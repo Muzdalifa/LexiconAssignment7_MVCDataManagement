@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LexiconAssignment7_MVCDataManagement.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,33 +8,75 @@ namespace LexiconAssignment7_MVCDataManagement.Models
 {
     public class InMemoryPeopleRepo : IPeopleRepo
     {
-        private static List<Person>  People{ get; set; }
+        private static List<Person> People = new List<Person>();
 
-        private static int idCounter {
-            set {
-                idCounter = 0;
-            }
-            get {
+        private static int idCounter = 0;
+        public int IdCounter
+        {
+            get
+            {
                 return idCounter;
             }
+            private set
+            {
+                idCounter++;
+            }
         }
-        public Person Create(string name, string city, string phoneNumber)
+
+        int getID()
         {
-            Person newPerson =  new Person { ID = idCounter, Name = name, City = city, PhoneNumber = phoneNumber };
+            idCounter = idCounter + 1;
+            return idCounter;
+        }
+        /// <summary>
+        /// create person and add it to the People list
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public Person Create(CreatePersonViewModel person)
+        {
             idCounter++;
+            Person newPerson =  new Person { ID = IdCounter, Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber };
+            
+            
+      
+            People.Add(newPerson);
+
             return newPerson;
         }
-
+        /// <summary>
+        /// Find all person from the list and return, if the list 
+        /// </summary>
+        /// <returns name="List<Person>"></returns>
         public List<Person> Read()
         {
+            if (People == null)
+            {
+                return new List<Person>()
+                {
+                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"},
+                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"},
+                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"}
+                };
+            }
+
             return People;
         }
-
+        /// <summary>
+        /// Find person by ID from People list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns name="Person"></returns>
         public Person Read(int id)
         {
             return People.FirstOrDefault(x => x.ID == id);
         }
 
+        /// <summary>
+        /// find index of the person to update and update that index with new value
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns name="person"></returns>
         public Person Update(Person person)
         {
             int index = People.FindIndex(x => x.ID == person.ID);
@@ -48,7 +91,11 @@ namespace LexiconAssignment7_MVCDataManagement.Models
             }        
            
         }
-
+        /// <summary>
+        /// remove person from the list
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns name="boolean"></returns>
         public bool Delete(Person person)
         {
             return People.Remove(person);

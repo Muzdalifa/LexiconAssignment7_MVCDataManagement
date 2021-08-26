@@ -6,24 +6,21 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
 {
     public class CreatePersonViewModel
     {
-        
-        public Person Person { get; set; }
 
-        [DisplayName("Name : ")]
+        //[DisplayName("Name : ")]
         [Required(ErrorMessage = "You need to fill out name field!")]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { set; get; }
 
-        [DisplayName("City : ")]
+        //[DisplayName("City : ")]
         [Required(ErrorMessage = "You need to fill out city field!")]
         [StringLength(50)]
-        public string City { get; set; }
+        public string City { set; get; }
 
         [DataType(DataType.PhoneNumber)]
-        [DisplayName("Phone number : ")]
+        //[DisplayName("Phone number : ")]
         [Required(ErrorMessage = "You need to fill out phone number field!")]
-        public string PhoneNumber { get; set; }
-        InMemoryPeopleRepo InMemoryPeopleRepo { get; set; }
+        public string PhoneNumber { set; get; }
 
-}
+    }
 }
