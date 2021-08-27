@@ -36,7 +36,9 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         public Person Create(CreatePersonViewModel person)
         {
             idCounter++;
-            Person newPerson =  new Person { ID = IdCounter, Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber };
+            Person newPerson =  new Person { 
+                ID = IdCounter, Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
+            };
             
             
       
@@ -47,7 +49,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// <summary>
         /// Find all person from the list and return, if the list 
         /// </summary>
-        /// <returns name="List<Person>"></returns>
+        /// <returns></returns>
         public List<Person> Read()
         {
             if (People == null)
@@ -66,7 +68,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// Find person by ID from People list
         /// </summary>
         /// <param name="id"></param>
-        /// <returns name="Person"></returns>
+        /// <returns></returns>
         public Person Read(int id)
         {
             return People.FirstOrDefault(x => x.ID == id);
@@ -95,7 +97,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// remove person from the list
         /// </summary>
         /// <param name="person"></param>
-        /// <returns name="boolean"></returns>
+        /// <returns></returns>
         public bool Delete(Person person)
         {
             return People.Remove(person);

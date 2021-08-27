@@ -8,7 +8,7 @@
 
 <row class="container-fluid">
     <form asp-controller="People" asp-action="Index" method="post">
-        <span asp-validation-for="Person.Name"></span>
+        <span asp-validation-for="Person.Name" class="text-danger"></span>
         <input asp-for="Person.Name" />
         <span asp-validation-for="Person.City"></span>
         <input asp-for="Person.City" />
@@ -18,30 +18,38 @@
     </form>
 </row>
 
-<form asp-action="Index" method="post">
-    <label>Please enter your string to search</label>
-    <input for="Search" />
-    <input type="submit" value="Search">
-</form>
+<row class="container">
+    <form asp-action="SearchPeople" method="get">
+        <label asp-for="Search">Please enter your string to search</label>
+        <input asp-for="Search" />
+        <input type="submit" value="Search">
+    </form>
+</row>
+
 
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>City</th>
             <th>Phone number</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (Person person in Model.People)
         {
-            <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.City</td>
-                <td>@person.PhoneNumber</td>
-                <td><a>Edit</a></td>
-            </tr>
+        <tr>
+            <td>@person.ID</td>
+            <td>@person.Name</td>
+            <td>@person.City</td>
+            <td>@person.PhoneNumber</td>
+            <td><a>Edit</a></td>
+            <td><a>Delete</a></td>
+        </tr>
         }
     </tbody>
 </table>

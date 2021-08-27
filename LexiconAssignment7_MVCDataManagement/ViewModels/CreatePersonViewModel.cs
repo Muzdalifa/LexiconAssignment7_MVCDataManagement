@@ -20,6 +20,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         [DataType(DataType.PhoneNumber)]
         //[DisplayName("Phone number : ")]
         [Required(ErrorMessage = "You need to fill out phone number field!")]
+        [RegularExpression(@"[+][0-9]*$", ErrorMessage = "Please start with country code ")]
         public string PhoneNumber { set; get; }
 
     }

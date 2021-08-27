@@ -1,6 +1,6 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
-
+//*******************************************************************************************//
 namespace LexiconAssignment7_MVCDataManagement.Services
 {
     public class PeopleService : IPeopleService
@@ -12,7 +12,9 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         }
         public Person Add(CreatePersonViewModel person)
         {
-            CreatePersonViewModel newPerson = new CreatePersonViewModel { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber };
+            CreatePersonViewModel newPerson = new CreatePersonViewModel { 
+                Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
+            };
             return _peopleRepo.Create(newPerson);
         }
 
@@ -40,15 +42,13 @@ namespace LexiconAssignment7_MVCDataManagement.Services
 
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
-            PeopleViewModel searchedPeople = new PeopleViewModel();
-            foreach (Person person in _peopleRepo.Read())
-            {
-                if (person.Name == search.Search.Name || person.City == search.Search.City || person.PhoneNumber == search.Search.PhoneNumber)
-                {
-                    searchedPeople.SearchedPeople.Add(person);
-                }
-            }
-            return searchedPeople;
+            search.SearchedPeople =  _peopleRepo.Read().FindAll(
+                person=>person.Name == search.Search 
+                || person.City == search.Search 
+                || person.PhoneNumber == search.Search
+            );
+
+            return search;
         }
 
         public Person FindBy(int id)

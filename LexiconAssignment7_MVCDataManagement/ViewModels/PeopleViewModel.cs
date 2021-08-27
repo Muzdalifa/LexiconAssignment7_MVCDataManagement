@@ -7,9 +7,9 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
     {
         public CreatePersonViewModel Person { get; set; }
         public List<Person> People = new List<Person>();
-        public List<Person> SearchedPeople { get; set; }
+        public List<Person> SearchedPeople = new List<Person>();
 
-        public Person Search { get; set; }
+        public string Search { get; set; }
 
 
 

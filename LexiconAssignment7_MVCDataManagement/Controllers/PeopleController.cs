@@ -25,13 +25,30 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(CreatePersonViewModel person)
+        public IActionResult Index(CreatePersonViewModel createPersonViewModel)
         {
             if (ModelState.IsValid)
             {
-                _peopleService.Add(person);             
+                _peopleService.Add(createPersonViewModel);             
             }
                 return View(_peopleService.All());          
         }
+
+        //[HttpGet]
+        //public IActionResult SearchPeople(PeopleViewModel peopleViewModel)
+        //{
+        //    return View( _peopleService.FindBy(peopleViewModel));
+        //}
+       
+        //[HttpPut]
+        //public IActionResult Update(CreatePersonViewModel person)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        _peopleService.Add(person);
+        //    }
+        //    return View(_peopleService.All());
+        //}
     }
 }
