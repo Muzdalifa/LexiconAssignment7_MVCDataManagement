@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Controllers
 {
+    //problem kwenye controller
     public class PeopleController : Controller
     {
         private readonly IPeopleService _peopleService;
@@ -25,30 +26,30 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(CreatePersonViewModel createPersonViewModel)
+        public IActionResult Index(CreatePersonViewModel person) //name person here matter if you change it you get en error
         {
             if (ModelState.IsValid)
             {
-                _peopleService.Add(createPersonViewModel);             
+                _peopleService.Add(person);             
             }
                 return View(_peopleService.All());          
         }
 
-        //[HttpGet]
-        //public IActionResult SearchPeople(PeopleViewModel peopleViewModel)
-        //{
-        //    return View( _peopleService.FindBy(peopleViewModel));
-        //}
-       
-        //[HttpPut]
-        //public IActionResult Update(CreatePersonViewModel person)
-        //{
+        [HttpGet]
+        public IActionResult SearchPeople(PeopleViewModel peopleViewModel)
+        {
+            return View(_peopleService.FindBy(peopleViewModel));
+        }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        _peopleService.Add(person);
-        //    }
-        //    return View(_peopleService.All());
-        //}
+        [HttpPut]
+        public IActionResult Update(CreatePersonViewModel person)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _peopleService.Add(person);
+            }
+            return View(_peopleService.All());
+        }
     }
 }
