@@ -36,7 +36,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchPeople(PeopleViewModel peopleViewModel)
+        public IActionResult Index(PeopleViewModel peopleViewModel)
         {
             return View(_peopleService.FindBy(peopleViewModel));
         }
