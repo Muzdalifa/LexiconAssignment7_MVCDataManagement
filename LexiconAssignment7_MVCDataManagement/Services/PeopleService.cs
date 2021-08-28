@@ -42,7 +42,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
 
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
-            search.SearchedPeople =  _peopleRepo.Read().FindAll(
+            search.People =  _peopleRepo.Read().FindAll(
                 person=>person.Name == search.Search 
                 || person.City == search.Search 
                 || person.PhoneNumber == search.Search

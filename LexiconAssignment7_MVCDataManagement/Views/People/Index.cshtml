@@ -3,58 +3,61 @@
     ViewData["Title"] = "Peples records";
 }
 
-<h1>Welcome to People's records</h1>
-
 <row class="container-fluid">
-    <form asp-controller="People" asp-action="Index" method="post">
-        <span asp-validation-for="Person.Name" class="text-danger"></span>
-        <input asp-for="Person.Name" />
-        <span asp-validation-for="Person.City"></span>
-        <input asp-for="Person.City" />
-        <span asp-validation-for="Person.PhoneNumber"></span>
-        <input asp-for="Person.PhoneNumber" />
-        <input type="submit" value="Add">
-    </form>
-</row>
+    <h1>Welcome to People's records</h1>
 
-<row class="container">
-    <form asp-controller="People" asp-action="Index" method="get">
-        <label asp-for="Search">Please enter your string to search</label>
-        <input asp-for="Search" />
-        <input type="submit" value="Search">
-    </form>
-</row>
+    <row class="container-fluid">
+        <form asp-controller="People" asp-action="Index" method="post">
+            <span asp-validation-for="Person.Name" class="text-danger"></span>
+            <input asp-for="Person.Name" />
+            <span asp-validation-for="Person.City"></span>
+            <input asp-for="Person.City" />
+            <span asp-validation-for="Person.PhoneNumber"></span>
+            <input asp-for="Person.PhoneNumber" />
+            <input type="submit" value="Add">
+        </form>
+    </row>
+
+    <row class="container">
+        <form asp-controller="People" asp-action="Index" method="get">
+            <label asp-for="Search">Please enter your string to search</label>
+            <input asp-for="Search" />
+            <input type="submit" value="Search">
+        </form>
+    </row>
 
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>City</th>
-            <th>Phone number</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Person person in Model.People)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.City</td>
-                <td>@person.PhoneNumber</td>
-                <td><a>Edit</a></td>
-                <td><a>Delete</a></td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Phone number</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Person person in Model.People)
+            {
+                <tr>
+                    <td>@person.ID</td>
+                    <td>@person.Name</td>
+                    <td>@person.City</td>
+                    <td>@person.PhoneNumber</td>
+                    <td><a asp-controller="People" asp-action="Update">Edit</a></td>
+                    <td><a asp-controller="People" asp-action="Delete">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</row>
 
 @*TODO: remove this section*@
-@if(Model.SearchedPeople != null)
+@*@if(Model.SearchedPeople != null)
             {
 <table>
     <thead>
@@ -76,11 +79,11 @@
                 <td>@person.Name</td>
                 <td>@person.City</td>
                 <td>@person.PhoneNumber</td>
-                <td><a>Edit</a></td>
-                <td><a>Delete</a></td>
+                <td><a asp-controller="People" asp-action="Update" >Edit</a></td>
+                <td><a asp-controller="People" asp-action="Delete" >Delete</a></td>
             </tr>
         }
     </tbody>
 </table>
-            }
+            }*@
 

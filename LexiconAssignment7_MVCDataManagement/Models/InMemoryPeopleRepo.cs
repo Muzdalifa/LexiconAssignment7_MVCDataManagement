@@ -23,11 +23,6 @@ namespace LexiconAssignment7_MVCDataManagement.Models
             }
         }
 
-        int getID()
-        {
-            idCounter = idCounter + 1;
-            return idCounter;
-        }
         /// <summary>
         /// create person and add it to the People list
         /// </summary>
@@ -37,10 +32,11 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         {
             idCounter++;
             Person newPerson =  new Person { 
-                ID = IdCounter, Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
-            };
-            
-            
+                ID = IdCounter,
+                Name = person.Name,
+                City = person.City,
+                PhoneNumber = person.PhoneNumber 
+            };       
       
             People.Add(newPerson);
 
@@ -52,15 +48,27 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// <returns></returns>
         public List<Person> Read()
         {
-            if (People == null)
-            {
-                return new List<Person>()
-                {
-                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"},
-                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"},
-                    new Person () { Name = "Muzdalifa", City = "Skovde", PhoneNumber = "0700276515"}
-                };
-            }
+            //if (People == null)
+            //{
+            //    return new List<Person>()
+            //    {
+            //        new Person () {
+            //            Name = "Muzdalifa",
+            //            City = "Skovde",
+            //            PhoneNumber = "0700276515"
+            //        },
+            //        new Person () {
+            //            Name = "Muzdalifa",
+            //            City = "Skovde",
+            //            PhoneNumber = "0700276515"
+            //        },
+            //        new Person () { 
+            //            Name = "Muzdalifa",
+            //            City = "Skovde",
+            //            PhoneNumber = "0700276515"
+            //        }
+            //    };
+            //}
 
             return People;
         }
@@ -78,7 +86,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// find index of the person to update and update that index with new value
         /// </summary>
         /// <param name="person"></param>
-        /// <returns name="person"></returns>
+        /// <returns></returns>
         public Person Update(Person person)
         {
             int index = People.FindIndex(x => x.ID == person.ID);

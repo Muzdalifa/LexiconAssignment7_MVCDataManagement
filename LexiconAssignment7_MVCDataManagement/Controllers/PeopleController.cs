@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Controllers
 {
-    //problem kwenye controller
     public class PeopleController : Controller
     {
         private readonly IPeopleService _peopleService;
@@ -18,14 +17,25 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         {
             _peopleService = peopleService;
         }
-        public IActionResult Index()
-        {            
+        
+        public IActionResult Index(PeopleViewModel peopleViewModel)
+        {
             PeopleViewModel people = new PeopleViewModel();
-            people = _peopleService.All();
-            return View(people);
+
+            if (!string.IsNullOrEmpty(peopleViewModel.Search))
+            {
+                return View(_peopleService.FindBy(peopleViewModel));
+
+            }
+            else
+            {
+                return View( _peopleService.All());
+            }          
         }
 
+
         [HttpPost]
+        //create person
         public IActionResult Index(CreatePersonViewModel person) //name person here matter if you change it you get en error
         {
             if (ModelState.IsValid)
@@ -35,13 +45,8 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
                 return View(_peopleService.All());          
         }
 
-        [HttpGet]
-        public IActionResult Index(PeopleViewModel peopleViewModel)
-        {
-            return View(_peopleService.FindBy(peopleViewModel));
-        }
-
         [HttpPut]
+        [ActionName("Index")]
         public IActionResult Update(CreatePersonViewModel person)
         {
 
@@ -51,5 +56,14 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             }
             return View(_peopleService.All());
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _peopleService.Remove(id);
+            
+            return View(_peopleService.All());
+        }
+
     }
 }
