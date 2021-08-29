@@ -24,6 +24,10 @@ table {
     /*table-layout: fixed;*/ /*keep column with same size*/
 }
 input{
-    padding: 10px;
-
+    padding: 8px;
+}
+.header-table{
+    /*font-size:large;*/
+    font-weight:700;
+    border-bottom: solid black 1px;
 }

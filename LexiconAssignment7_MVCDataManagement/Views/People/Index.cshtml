@@ -27,29 +27,24 @@
         </form>
     </row>
 
-    <table class="table">
-        <thead>
-            <tr scope="row">
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Phone number</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row container-fluid">
+        <div class="col">
+            <div class="row header-table">
+                <div class="col">ID</div>
+                <div class="col">Name</div>
+                <div class="col">City</div>
+                <div class="col">Phone number</div>
+                <div class="col"></div>
+                <br />
+            </div>
+
             @foreach (Person person in Model.People)
             {
-            <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.City</td>
-                <td>@person.PhoneNumber</td>
-                <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
-            </tr>
+                <partial name="_PartialPeopleView.cshtml" model="person"/>
             }
-        </tbody>
-    </table>
+
+        </div>
+    </div>
 
 </row>
 
