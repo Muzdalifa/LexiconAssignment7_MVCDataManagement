@@ -1,0 +1,17 @@
+﻿@model PeopleViewModel
+
+<div class="row container-fluid">
+
+    <h1>Choose a button to display</h1>
+
+    <input type="submit" value="People" onclick="personShow()" />
+        <label>Enter Id : </label>
+        <input type="number" min="1" placeholder="Enter id" id="personId" />
+
+    <input type="submit" value="Details" onclick="personDetails() " />
+    <input type="button" value="Delete" id="deleteBtn" onclick="personDelete()"/>
+
+    <div id="showResult">
+    </div>
+
+</div>

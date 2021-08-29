@@ -40,7 +40,10 @@ namespace LexiconAssignment7_MVCDataManagement
             {
             endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=People}/{action=Index}/{id?}");                 
+                pattern: "{controller=People}/{action=Index}/{id?}");
+            endpoints.MapControllerRoute(
+                name: "custom",
+                pattern: "{controller=ajax}/{action=Index}/{id?}");
             });
         }
     }
