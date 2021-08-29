@@ -33,16 +33,15 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             }          
         }
 
-
         [HttpPost]
         //create person
-        public IActionResult Index(CreatePersonViewModel person) //name person here matter if you change it you get en error
+        public IActionResult Create(CreatePersonViewModel person) //name person here matter if you change it you get en error
         {
             if (ModelState.IsValid)
             {
                 _peopleService.Add(person);             
             }
-                return View(_peopleService.All());          
+                return View("Index",_peopleService.All());          
         }
 
         [HttpGet]

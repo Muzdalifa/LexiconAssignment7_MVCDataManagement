@@ -7,7 +7,7 @@
     <h1>Welcome to People's records</h1>
 
     <row class="container-fluid">
-        <form asp-controller="People" asp-action="Index" method="post" id="create-form">
+        <form asp-controller="People" asp-action="Create" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
             <input asp-for="Person.Name" id="name"/>
             <span asp-validation-for="Person.City"></span>
