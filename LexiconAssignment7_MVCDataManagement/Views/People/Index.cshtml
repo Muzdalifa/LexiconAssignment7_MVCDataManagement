@@ -19,9 +19,9 @@
         </form>
     </row>
 
-    <row class="container-fluid" >
-        <form asp-controller="People" asp-action="Index" method="post"  id="edit-form">
-            <input asp-for="ID" id="editID" name="id" type="hidden"/>
+    @*<row class="container-fluid" >
+        <form asp-controller="People" asp-action="Index/2" method="get"  id="edit-form">
+            <input asp-for="PersonId" id="editID" name="id" type="hidden"/>
             <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
             <input asp-for="EditPerson.Name" id="editName" />
             <span asp-validation-for="EditPerson.City"></span>
@@ -30,7 +30,7 @@
             <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" />
             <input type="submit" value="Edit" id="edit-btn">
         </form>
-    </row>
+    </row>*@
 
     <row class="container">
         <form asp-controller="People" asp-action="Index" method="get">
@@ -56,15 +56,13 @@
         <tbody>
             @foreach (Person person in Model.People)
             {
-                <tr>
-                    <td >@person.ID</td>
-                    <td>@person.Name</td>
-                    <td>@person.City</td>
-                    <td>@person.PhoneNumber</td>
-                    <td><div asp-controller="People" id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</div></td>
-                    <td><a asp-controller="People" asp-action="Delete">Delete</a></td>
-                    @*<td>@Html.ActionLink("Delete", "Index", "Home")</td>*@
-                </tr>
+            <tr>
+                <td>@person.ID</td>
+                <td>@person.Name</td>
+                <td>@person.City</td>
+                <td>@person.PhoneNumber</td>
+                <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
+            </tr>
             }
         </tbody>
     </table>

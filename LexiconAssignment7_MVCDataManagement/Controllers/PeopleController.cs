@@ -18,7 +18,6 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             _peopleService = peopleService;
         }
 
-        
         public IActionResult Index(PeopleViewModel peopleViewModel)
         {
             PeopleViewModel people = new PeopleViewModel();
@@ -46,24 +45,25 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
                 return View(_peopleService.All());          
         }
 
-        [HttpPut]
-        public IActionResult Index(PeopleViewModel personId, CreatePersonViewModel person)
-        {
+        //[HttpPut]
+        //[Route("/Index/id")]
+        //public IActionResult Index(PeopleViewModel id, CreatePersonViewModel person)
+        //{
 
-            if (ModelState.IsValid)
-            {
+        //    if (ModelState.IsValid)
+        //    {
 
-                _peopleService.Edit(personId.ID, new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber });  
-            }
-            return View(_peopleService.All());
-        }
+        //        _peopleService.Edit(id.PersonId, new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber });  
+        //    }
+        //    return View(_peopleService.All());
+        //}
 
-        [HttpDelete]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             _peopleService.Remove(id);
             
-            return View(_peopleService.All());
+            return View("Index", _peopleService.All());
         }
 
     }
