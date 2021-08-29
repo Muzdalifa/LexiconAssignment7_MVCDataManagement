@@ -6,16 +6,16 @@
 <row class="container-fluid">
     <h1>Welcome to People's records</h1>
 
-    <row class="container-fluid">
+    <row class="container-fluid" >
         <form asp-controller="People" asp-action="Create" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name" id="name"/>
-            <span asp-validation-for="Person.City"></span>
-            <input asp-for="Person.City" id="city" />
-            <span asp-validation-for="Person.PhoneNumber"></span>
-            <input asp-for="Person.PhoneNumber" id="phone" />
-            <input type="submit" value="Add">
-            <input type="button" value="Reset" id="reset" onclick="Clear()">
+            <input asp-for="Person.Name" id="name" placeholder="Enter name"/>
+            <span asp-validation-for="Person.City" class="text-danger"></span>
+            <input asp-for="Person.City" id="city" placeholder="Enter city" />
+            <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
+            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number"/>
+            <input type="submit" class="btn btn-secondary" value="Add">
+            <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
         </form>
     </row>
 
@@ -23,21 +23,18 @@
         <form asp-controller="People" asp-action="Index" method="get">
             <label asp-for="Search">Please enter your string to search</label>
             <input asp-for="Search" />
-            <input type="submit" value="Search">
+            <input type="submit" class="btn btn-secondary" value="Search">
         </form>
     </row>
 
-
     <table class="table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Phone number</th>
-                <th></th>
-                <th></th>
-                <th></th>
+            <tr scope="row">
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Phone number</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

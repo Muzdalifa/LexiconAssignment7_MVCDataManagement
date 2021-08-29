@@ -7,14 +7,23 @@ body {
     margin:auto;
     background-color: lightgray;
     height:100vh;
+    display:flex;
+    justify-content:center
 }
-
-/*#edit-form{*/
-    /*display : none;*/
-    /*visibility: hidden;
-    height: 0;
-}*/
 
 a{
     color:black;
+}
+a:hover{
+    color:white;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    /*table-layout: fixed;*/ /*keep column with same size*/
+}
+input{
+    padding: 10px;
+
 }

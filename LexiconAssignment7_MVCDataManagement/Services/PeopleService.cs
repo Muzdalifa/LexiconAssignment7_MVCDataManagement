@@ -40,9 +40,9 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
             search.People =  _peopleRepo.Read().FindAll(
-                person=>person.Name == search.Search 
-                || person.City == search.Search 
-                || person.PhoneNumber == search.Search
+                person=>person.Name.Contains(search.Search) 
+                || person.City.Contains(search.Search) 
+                || person.PhoneNumber.Contains(search.Search)
             );
 
             return search;
