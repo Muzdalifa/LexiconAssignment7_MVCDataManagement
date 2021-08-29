@@ -17,6 +17,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         {
             _peopleService = peopleService;
         }
+
         
         public IActionResult Index(PeopleViewModel peopleViewModel)
         {
@@ -46,13 +47,13 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPut]
-        [ActionName("Index")]
-        public IActionResult Update(CreatePersonViewModel person)
+        public IActionResult Index(PeopleViewModel personId, CreatePersonViewModel person)
         {
 
             if (ModelState.IsValid)
             {
-                _peopleService.Add(person);
+
+                _peopleService.Edit(personId.ID, new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber });  
             }
             return View(_peopleService.All());
         }

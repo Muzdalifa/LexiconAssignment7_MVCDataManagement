@@ -12,10 +12,10 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         }
         public Person Add(CreatePersonViewModel person)
         {
-            CreatePersonViewModel newPerson = new CreatePersonViewModel { 
-                Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
-            };
-            return _peopleRepo.Create(newPerson);
+            //CreatePersonViewModel newPerson = new CreatePersonViewModel { 
+            //    Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
+            //};
+            return _peopleRepo.Create(person);
         }
 
         public PeopleViewModel All()

@@ -7,14 +7,28 @@
     <h1>Welcome to People's records</h1>
 
     <row class="container-fluid">
-        <form asp-controller="People" asp-action="Index" method="post">
+        <form asp-controller="People" asp-action="Index" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name" />
+            <input asp-for="Person.Name"/>
             <span asp-validation-for="Person.City"></span>
             <input asp-for="Person.City" />
             <span asp-validation-for="Person.PhoneNumber"></span>
             <input asp-for="Person.PhoneNumber" />
             <input type="submit" value="Add">
+            <input type="reset" value="Reset" id="reset">
+        </form>
+    </row>
+
+    <row class="container-fluid" >
+        <form asp-controller="People" asp-action="Index" method="post"  id="edit-form">
+            <input asp-for="ID" id="editID" name="id" type="hidden"/>
+            <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
+            <input asp-for="EditPerson.Name" id="editName" />
+            <span asp-validation-for="EditPerson.City"></span>
+            <input asp-for="EditPerson.City" id="editCity" />
+            <span asp-validation-for="EditPerson.PhoneNumber"></span>
+            <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" />
+            <input type="submit" value="Edit" id="edit-btn">
         </form>
     </row>
 
@@ -43,47 +57,17 @@
             @foreach (Person person in Model.People)
             {
                 <tr>
-                    <td>@person.ID</td>
+                    <td >@person.ID</td>
                     <td>@person.Name</td>
                     <td>@person.City</td>
                     <td>@person.PhoneNumber</td>
-                    <td><a asp-controller="People" asp-action="Update">Edit</a></td>
+                    <td><div asp-controller="People" id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</div></td>
                     <td><a asp-controller="People" asp-action="Delete">Delete</a></td>
+                    @*<td>@Html.ActionLink("Delete", "Index", "Home")</td>*@
                 </tr>
             }
         </tbody>
     </table>
 
 </row>
-
-@*TODO: remove this section*@
-@*@if(Model.SearchedPeople != null)
-            {
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>City</th>
-            <th>Phone number</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Person person in Model.SearchedPeople)
-        {
-            <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.City</td>
-                <td>@person.PhoneNumber</td>
-                <td><a asp-controller="People" asp-action="Update" >Edit</a></td>
-                <td><a asp-controller="People" asp-action="Delete" >Delete</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
-            }*@
 
