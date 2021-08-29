@@ -9,28 +9,15 @@
     <row class="container-fluid">
         <form asp-controller="People" asp-action="Index" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name"/>
+            <input asp-for="Person.Name" id="name"/>
             <span asp-validation-for="Person.City"></span>
-            <input asp-for="Person.City" />
+            <input asp-for="Person.City" id="city" />
             <span asp-validation-for="Person.PhoneNumber"></span>
-            <input asp-for="Person.PhoneNumber" />
+            <input asp-for="Person.PhoneNumber" id="phone" />
             <input type="submit" value="Add">
-            <input type="reset" value="Reset" id="reset">
+            <input type="button" value="Reset" id="reset" onclick="Clear()">
         </form>
     </row>
-
-    @*<row class="container-fluid" >
-        <form asp-controller="People" asp-action="Index/2" method="get"  id="edit-form">
-            <input asp-for="PersonId" id="editID" name="id" type="hidden"/>
-            <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
-            <input asp-for="EditPerson.Name" id="editName" />
-            <span asp-validation-for="EditPerson.City"></span>
-            <input asp-for="EditPerson.City" id="editCity" />
-            <span asp-validation-for="EditPerson.PhoneNumber"></span>
-            <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" />
-            <input type="submit" value="Edit" id="edit-btn">
-        </form>
-    </row>*@
 
     <row class="container">
         <form asp-controller="People" asp-action="Index" method="get">

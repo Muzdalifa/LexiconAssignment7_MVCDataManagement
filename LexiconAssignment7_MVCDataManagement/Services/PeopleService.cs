@@ -1,20 +1,17 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
-//*******************************************************************************************//
+
 namespace LexiconAssignment7_MVCDataManagement.Services
 {
     public class PeopleService : IPeopleService
     {
-        private IPeopleRepo _peopleRepo; /*= new InMemoryPeopleRepo();*/
+        private IPeopleRepo _peopleRepo; 
         public PeopleService(IPeopleRepo peopleRepo)
         {
             _peopleRepo = peopleRepo;
         }
         public Person Add(CreatePersonViewModel person)
         {
-            //CreatePersonViewModel newPerson = new CreatePersonViewModel { 
-            //    Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber 
-            //};
             return _peopleRepo.Create(person);
         }
 

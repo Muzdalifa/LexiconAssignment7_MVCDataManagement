@@ -42,34 +42,13 @@ namespace LexiconAssignment7_MVCDataManagement.Models
 
             return newPerson;
         }
+
         /// <summary>
         /// Find all person from the list and return, if the list 
         /// </summary>
         /// <returns></returns>
         public List<Person> Read()
         {
-            //if (People == null)
-            //{
-            //    return new List<Person>()
-            //    {
-            //        new Person () {
-            //            Name = "Muzdalifa",
-            //            City = "Skovde",
-            //            PhoneNumber = "0700276515"
-            //        },
-            //        new Person () {
-            //            Name = "Muzdalifa",
-            //            City = "Skovde",
-            //            PhoneNumber = "0700276515"
-            //        },
-            //        new Person () { 
-            //            Name = "Muzdalifa",
-            //            City = "Skovde",
-            //            PhoneNumber = "0700276515"
-            //        }
-            //    };
-            //}
-
             return People;
         }
         /// <summary>

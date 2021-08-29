@@ -45,19 +45,6 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
                 return View(_peopleService.All());          
         }
 
-        //[HttpPut]
-        //[Route("/Index/id")]
-        //public IActionResult Index(PeopleViewModel id, CreatePersonViewModel person)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        _peopleService.Edit(id.PersonId, new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber });  
-        //    }
-        //    return View(_peopleService.All());
-        //}
-
         [HttpGet]
         public IActionResult Delete(int id)
         {
