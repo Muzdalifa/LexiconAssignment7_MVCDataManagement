@@ -40,9 +40,13 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             {
                 ViewBag.Message = $"Error has been occur while attempt deleting a person with id = {id}";
                 return PartialView("_PartialDelete", ViewBag.Message);
-            }
+            }           
+        }
 
-            
+        public IActionResult Error()
+        {
+            ViewBag.Message = $"Person was not found!";
+            return PartialView("_PartialDelete", ViewBag.Message);
         }
     }
 }

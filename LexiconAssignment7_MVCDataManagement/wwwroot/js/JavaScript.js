@@ -6,8 +6,6 @@
 
 //for ajax controller
 function personShow() {
-    console.log("hej");
-    /*  var dataRequest = {};*/
 
     $.ajax({
         type: "GET",
@@ -22,15 +20,27 @@ function personShow() {
 
 function personDetails() {
     var id = document.getElementById("personId").value;
-    $.ajax({
-        type: "GET",
-        url: `Ajax/Details/${id}`,
-        success: function (output) {
-            document.getElementById("showResult").innerHTML = output;
+   /* console.log(!id);*/
+    if (id) {
+        $.ajax({
+            type: "GET",
+            url: `Ajax/Details/${id}`,
+            success: function (output) {
+                document.getElementById("showResult").innerHTML = output;
 
-        }
-    })
+            }
+        })
+    }
+    else {
+        $.ajax({
+            type: "GET",
+            url: "Ajax/Error",
+            success: function (output) {
+                document.getElementById("showResult").innerHTML = output;
 
+            }
+        })
+    }
 }
 
 
