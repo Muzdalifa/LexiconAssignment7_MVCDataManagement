@@ -13,15 +13,24 @@
 </head>
 <body>
 
-    <ol class="nav bg-light bg-secondary">
-        <li class="nav-item">
-            <a class="nav-link" asp-controller="People" asp-action="Index"> People's data Assignment</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" asp-controller="Ajax" asp-action="Index"> Ajax Assignment</a>
-        </li>
-    </ol>
-    <div class="row container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-5">
+        <a class="navbar-brand" href="#">MVC Data Management</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                   
+                    <a class="nav-link active" asp-controller="People" asp-action="Index"> People's data Assignment<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " asp-controller="Ajax" asp-action="Index"> Ajax Assignment</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row container p-5 py-3">
         @RenderBody()
     </div>
 

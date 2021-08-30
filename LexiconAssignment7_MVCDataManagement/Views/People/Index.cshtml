@@ -3,48 +3,45 @@
     ViewData["Title"] = "Peples records";
 }
 
-<row class="container-fluid">
-    <h1>Welcome to People's records</h1>
+<h1 class="py-3">Welcome to People's records</h1>
 
-    <row class="container-fluid" >
-        <form asp-controller="People" asp-action="Create" method="post" id="create-form">
-            <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name" id="name" placeholder="Enter name"/>
-            <span asp-validation-for="Person.City" class="text-danger"></span>
-            <input asp-for="Person.City" id="city" placeholder="Enter city" />
-            <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number"/>
-            <input type="submit" class="btn btn-secondary" value="Add">
-            <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
-        </form>
-    </row>
+<div class="row container-fluid py-2" >
+    <form asp-controller="People" asp-action="Create" method="post" id="create-form">
+        <span asp-validation-for="Person.Name" class="text-danger"></span>
+        <input asp-for="Person.Name" id="name" placeholder="Enter name"/>
+        <span asp-validation-for="Person.City" class="text-danger"></span>
+        <input asp-for="Person.City" id="city" placeholder="Enter city" />
+        <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
+        <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number"/>
+        <input type="submit" class="btn btn-secondary" value="Add">
+        <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
+    </form>
+</div>
 
-    <row class="container">
-        <form asp-controller="People" asp-action="Index" method="get">
-            <label asp-for="Search">Please enter your string to search</label>
-            <input asp-for="Search" />
-            <input type="submit" class="btn btn-secondary" value="Search">
-        </form>
-    </row>
+<div class="row container-fluid py-2">
+    <form asp-controller="People" asp-action="Index" method="get">
+        <label asp-for="Search">Please enter your string to search</label>
+        <input asp-for="Search" />
+        <input type="submit" class="btn btn-secondary" value="Search">
+    </form>
+</div>
 
-    <div class="row container-fluid">
-        <div class="col">
-            <div class="row header-table">
-                <div class="col">ID</div>
-                <div class="col">Name</div>
-                <div class="col">City</div>
-                <div class="col">Phone number</div>
-                <div class="col"></div>
-                <br />
-            </div>
-
-            @foreach (Person person in Model.People)
-            {
-                <partial name="_PartialPeopleView.cshtml" model="person"/>
-            }
-
+<div class="row container-fluid py-2">
+    <div class="col">
+        <div class="row header-table">
+            <div class="col heading">ID</div>
+            <div class="col">Name</div>
+            <div class="col">City</div>
+            <div class="col">Phone number</div>
+            <div class="col"></div>
+            <br />
         </div>
-    </div>
 
-</row>
+        @foreach (Person person in Model.People)
+        {
+            <partial name="_PartialPeopleView.cshtml" model="person"/>
+        }
+
+    </div>
+</div>
 

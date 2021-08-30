@@ -1,17 +1,17 @@
 ﻿@model PeopleViewModel
 
-<div class="row container-fluid">
+<h1>Welcome to data management using Ajax in MVC</h1>
+<p class="fs-3">Choose a button to display..</p>
 
-    <h1>Choose a button to display</h1>
-
-    <input type="submit" value="People" onclick="personShow()" />
+<row class="d-flex flex-row justify-content-around">
+    <input type="submit" value="People" onclick="personShow()" class="btn btn-secondary custom-width" />
+    <div>
         <label>Enter Id : </label>
         <input type="number" min="1" placeholder="Enter id" id="personId" />
-
-    <input type="submit" value="Details" onclick="personDetails() " />
-    <input type="button" value="Delete" id="deleteBtn" onclick="personDelete()"/>
-
-    <div id="showResult">
     </div>
+    <input type="submit" value="Details" onclick="personDetails() " class="btn btn-secondary custom-width" />
+    <input type="button" value="Delete" id="deleteBtn" onclick="personDelete()" class="btn btn-secondary custom-width" />
+</row>
 
+<div id="showResult" class="container-fluid m-2">
 </div>

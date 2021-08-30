@@ -9,7 +9,14 @@ body {
 /*    display:flex;
     justify-content:center*/
 }
+.heading {
+    font-size: larger;
+}
+nav{
+    height:80px;
+}
 h1{
+    margin:0;
     text-align:center;
 }
 a{
@@ -21,16 +28,20 @@ a:hover{
     color:white;
 }
 
-table {
-    width: 80%;
+table, #showResult {
     margin: auto;
-    /*table-layout: fixed;*/ /*keep column with same size*/
 }
 input{
     padding: 8px;
 }
 .header-table{
-    /*font-size:large;*/
     font-weight:700;
     border-bottom: solid black 1px;
+}
+p{
+    font-size: 16px;
+}
+.custom-width{
+    width:160px;
+    height:40px;
 }
