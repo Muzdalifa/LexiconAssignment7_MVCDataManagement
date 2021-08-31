@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Models
 {
+    /// <summary>
+    /// Mock repository to manage <paramref name="Person"/> class's data 
+    /// </summary>
     public class InMemoryPeopleRepo : IPeopleRepo
     {
         private static List<Person> People = new List<Person>();
@@ -24,10 +27,10 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         }
 
         /// <summary>
-        /// create person and add it to the People list
+        /// Create person and add it to the <paramref name="People"/> list
         /// </summary>
-        /// <param name="person"></param>
-        /// <returns></returns>
+        /// <param name="person">Object of type <paramref name="CreatePersonViewModel"/> </param>
+        /// <returns>Object of type <paramref name="Person"/></returns>
         public Person Create(CreatePersonViewModel person)
         {
             idCounter++;
@@ -44,28 +47,31 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         }
 
         /// <summary>
-        /// Find all person from the list and return, if the list 
+        /// Return all person from <paramref name="People"/> list
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of type <paramref name="Person"/></returns>
         public List<Person> Read()
         {
             return People;
         }
+
         /// <summary>
         /// Find person by ID from People list
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id of a person</param>
+        /// <returns>Object of type <paramref name="Person"/></returns>
         public Person Read(int id)
         {
             return People.FirstOrDefault(x => x.ID == id);
         }
 
         /// <summary>
-        /// find index of the person to update and update that index with new value
+        /// Update given person in the <paramref name="People"/> list
         /// </summary>
         /// <param name="person"></param>
-        /// <returns></returns>
+        ///<exception cref="ArgumentNullException"></exception>
+        /// When <paramref name="person.ID"/> is not found 
+        /// <returns>Object of type <paramref name="Person"/></returns>
         public Person Update(Person person)
         {
             int index = People.FindIndex(x => x.ID == person.ID);
@@ -77,14 +83,14 @@ namespace LexiconAssignment7_MVCDataManagement.Models
             else
             {
                 throw new ArgumentNullException();
-            }        
-           
+            }    
         }
+
         /// <summary>
-        /// remove person from the list
+        /// Remove person from the <paramref name="People"/> list
         /// </summary>
         /// <param name="person"></param>
-        /// <returns></returns>
+        /// <returns><paramref name="true"/> if Person has been deleted and <paramref name="false"/> if not</returns>
         public bool Delete(Person person)
         {
             return People.Remove(person);
