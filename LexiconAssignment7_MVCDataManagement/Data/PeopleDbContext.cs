@@ -9,7 +9,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 {
     public class PeopleDbContext:DbContext
     {
-        public PeopleDbContext(DbContextOptions options):base(options)
+        public PeopleDbContext(DbContextOptions<PeopleDbContext> options):base(options)
         {
         }
 

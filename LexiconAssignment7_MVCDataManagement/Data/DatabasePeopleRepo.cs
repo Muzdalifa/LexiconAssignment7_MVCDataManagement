@@ -9,34 +9,61 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 {
     public class DatabasePeopleRepo : IPeopleRepo
     {
-        private readonly IPeopleRepo _peopleRepo;
-        public DatabasePeopleRepo(IPeopleRepo peopleRepo)
+        private readonly PeopleDbContext _db;
+        public DatabasePeopleRepo(PeopleDbContext peopleDbContext)
         {
-            _peopleRepo = peopleRepo;
+            _db = peopleDbContext;
         }
         public Person Create(CreatePersonViewModel person)
         {
-            throw new NotImplementedException();
+            Person newPerson = new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber };
+            _db.People.Add(newPerson);
+            _db.SaveChanges();
+
+            return newPerson;
         }
 
         public bool Delete(Person person)
         {
-            throw new NotImplementedException();
+            var personToDelete = _db.People
+                .Where<Person>(x => x.ID == person.ID)
+                .FirstOrDefault();
+            if(personToDelete != null)
+            {
+                _db.People.Remove(personToDelete);
+                _db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }          
         }
 
         public List<Person> Read()
         {
-            throw new NotImplementedException();
+           return  _db.People.ToList<Person>();
         }
 
         public Person Read(int id)
         {
-            throw new NotImplementedException();
+            return _db.People.ToList<Person>().FirstOrDefault<Person>(x => x.ID == id);
         }
 
         public Person Update(Person person)
         {
-            throw new NotImplementedException();
+            var query = from personToUpdate in _db.People
+                        where personToUpdate.ID == person.ID
+                        select personToUpdate;
+
+            foreach (Person data in query)
+            {
+                data.Name = person.Name;
+                data.City = person.City;
+                data.PhoneNumber = person.PhoneNumber;
+            }
+            _db.SaveChanges();
+            return person;
         }
     }
 }
