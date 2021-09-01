@@ -10,7 +10,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     public class DatabasePeopleRepo : IPeopleRepo
     {
         private readonly IPeopleRepo _peopleRepo;
-        public DatabasePeopleRepo()
+        public DatabasePeopleRepo(IPeopleRepo peopleRepo)
         {
             _peopleRepo = peopleRepo;
         }
