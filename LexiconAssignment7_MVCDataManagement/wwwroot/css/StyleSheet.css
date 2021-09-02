@@ -11,16 +11,17 @@ body {
     justify-content:center
 }
 
+
 a{
     color:black;
+    cursor:pointer;
 }
 a:hover{
     color:white;
 }
 
-table {
-    width: 80%;
-    margin: auto;
+.data {
+    width: 75%;
     /*table-layout: fixed;*/ /*keep column with same size*/
 }
 input{

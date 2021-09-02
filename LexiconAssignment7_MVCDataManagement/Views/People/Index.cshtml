@@ -3,23 +3,23 @@
     ViewData["Title"] = "Peples records";
 }
 
-<div class=" row container-fluid">
+<div class=" row container-fluid p-3">
     <h1>Welcome to People's records</h1>
 
-    <div class="row container-fluid">
+    <div class="row container p-3">
         <form asp-controller="People" asp-action="Create" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name" id="name" placeholder="Enter name" />
+            <input asp-for="Person.Name" id="name" placeholder="Enter name" class="pr-5"/>
             <span asp-validation-for="Person.City" class="text-danger"></span>
-            <input asp-for="Person.City" id="city" placeholder="Enter city" />
+            <input asp-for="Person.City" id="city" placeholder="Enter city" class="pr-5"/>
             <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" />
-            <input type="submit" class="btn btn-secondary" value="Add">
-            <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
+            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="pr-5" />
+            <input type="submit" class="btn btn-secondary pr-5" value="Add" >
+            <input type="button" class="btn btn-secondary pr-5" value="Reset" id="reset" onclick="Clear()">
         </form>
     </div>
 
-    <div class=" row container">
+    <div class=" row container p-3">
         <form asp-controller="People" asp-action="Index" method="get">
             <label asp-for="Search">Please enter your string to search</label>
             <input asp-for="Search" />
@@ -27,7 +27,7 @@
         </form>
     </div>
 
-    <div class="row container-fluid" id="edit-div">
+    <div class="row container p-3" id="edit-div">
         <form asp-controller="People" asp-action="Edit" method="post" id="edit-form">
             <input id="editID" name="id" type="hidden" />
             <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
@@ -40,29 +40,32 @@
         </form>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr scope="row">
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Phone number</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Person person in Model.People)
-            {
-                <tr>
-                    <td>@person.ID</td>
-                    <td>@person.Name</td>
-                    <td>@person.City</td>
-                    <td>@person.PhoneNumber</td>
-                    <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
-                    <td><a id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</a></td>
+    <div class="row container p-3 data">
+        <table class="table">
+            <thead class="bg-gradient bg-opacity-75 bg-secondary">
+                <tr scope="row">
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (Person person in Model.People)
+                {
+                    <tr>
+                        <td>@person.ID</td>
+                        <td>@person.Name</td>
+                        <td>@person.City</td>
+                        <td>@person.PhoneNumber</td>
+                        <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
+                        <td><a id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
 </div>
