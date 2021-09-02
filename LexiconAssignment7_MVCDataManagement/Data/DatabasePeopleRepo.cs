@@ -42,12 +42,27 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public List<Person> Read()
         {
-           return  _db.People.ToList<Person>();
+            //without using linq
+            //return  _db.People.ToList<Person>();
+
+            //using linq
+            var query = from person in _db.People
+                        select person;
+
+            return query.ToList<Person>();
         }
 
         public Person Read(int id)
         {
-            return _db.People.ToList<Person>().FirstOrDefault<Person>(x => x.ID == id);
+            //without using linq
+            //return _db.People.ToList<Person>().FirstOrDefault<Person>(x => x.ID == id);
+
+            //using linq
+            Person personToRead = (from person in _db.People
+                         select person)
+                        .FirstOrDefault(person => person.ID == id); 
+            
+            return personToRead;
         }
 
         public Person Update(Person person)
