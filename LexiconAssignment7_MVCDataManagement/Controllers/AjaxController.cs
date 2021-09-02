@@ -21,7 +21,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult People()
         {            
-            return PartialView("_PertialAjaxPeopleView", _peopleService.All().People);
+            return PartialView("AjaxPeopleView", _peopleService.All().People);
         }
 
         public IActionResult Details(int id)
@@ -32,8 +32,9 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             }
             else
             {
-                ViewBag.Message = "Person was not found";
-                return PartialView("_PartialDelete", ViewBag.Message);
+                //ViewBag.Message = "Person was not found";
+                //return PartialView("_PartialDelete", ViewBag.Message);
+                return RedirectToAction("Error");
             }
             
         }
@@ -44,6 +45,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             {
                 ViewBag.Message = $"Person with id = {id} has been deleted";
                 return PartialView("_PartialDelete", ViewBag.Message);
+
             }
             else
             {
