@@ -26,7 +26,16 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult Details(int id)
         {
-            return PartialView("_PartialDetails", _peopleService.FindBy(id));
+            if(_peopleService.FindBy(id) != null)
+            {
+                return PartialView("_PartialDetails", _peopleService.FindBy(id));
+            }
+            else
+            {
+                ViewBag.Message = "Person was not found";
+                return PartialView("_PartialDelete", ViewBag.Message);
+            }
+            
         }
         public IActionResult Delete(int id)
         {
