@@ -3,29 +3,42 @@
     ViewData["Title"] = "Peples records";
 }
 
-<row class="container-fluid">
+<div class=" row container-fluid">
     <h1>Welcome to People's records</h1>
 
-    <row class="container-fluid" >
+    <div class="row container-fluid">
         <form asp-controller="People" asp-action="Create" method="post" id="create-form">
             <span asp-validation-for="Person.Name" class="text-danger"></span>
-            <input asp-for="Person.Name" id="name" placeholder="Enter name"/>
+            <input asp-for="Person.Name" id="name" placeholder="Enter name" />
             <span asp-validation-for="Person.City" class="text-danger"></span>
             <input asp-for="Person.City" id="city" placeholder="Enter city" />
             <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number"/>
+            <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" />
             <input type="submit" class="btn btn-secondary" value="Add">
             <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
         </form>
-    </row>
+    </div>
 
-    <row class="container">
+    <div class=" row container">
         <form asp-controller="People" asp-action="Index" method="get">
             <label asp-for="Search">Please enter your string to search</label>
             <input asp-for="Search" />
             <input type="submit" class="btn btn-secondary" value="Search">
         </form>
-    </row>
+    </div>
+
+    <div class="row container-fluid" id="edit-div">
+        <form asp-controller="People" asp-action="Edit" method="post" id="edit-form">
+            <input id="editID" name="id" type="hidden" />
+            <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
+            <input asp-for="EditPerson.Name" id="editName" name="name"/>
+            <span asp-validation-for="EditPerson.City"></span>
+            <input asp-for="EditPerson.City" id="editCity" name="city"/>
+            <span asp-validation-for="EditPerson.PhoneNumber"></span>
+            <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" name="phoneNumber"/>
+            <input type="submit" class="btn btn-secondary" id="edit-btn" value="Edit"/>
+        </form>
+    </div>
 
     <table class="table">
         <thead>
@@ -35,21 +48,21 @@
                 <th scope="col">City</th>
                 <th scope="col">Phone number</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (Person person in Model.People)
             {
-            <tr>
-                <td>@person.ID</td>
-                <td>@person.Name</td>
-                <td>@person.City</td>
-                <td>@person.PhoneNumber</td>
-                <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
-            </tr>
+                <tr>
+                    <td>@person.ID</td>
+                    <td>@person.Name</td>
+                    <td>@person.City</td>
+                    <td>@person.PhoneNumber</td>
+                    <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
+                    <td><a id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</a></td>
+                </tr>
             }
         </tbody>
     </table>
-
-</row>
-
+</div>

@@ -13,6 +13,9 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
     {
         private readonly IPeopleService _peopleService;
 
+        [BindProperty(SupportsGet = true)]
+        public Person PersonData { get; set; }
+
         public PeopleController(IPeopleService peopleService)
         {
             _peopleService = peopleService;
@@ -41,7 +44,20 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             {
                 _peopleService.Add(person);             
             }
-                return View("Index",_peopleService.All());          
+            
+            return View("Index",_peopleService.All());          
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, string name, string city, string phoneNumber)
+        {
+            Person person = new Person {ID=id, Name = name, City = city, PhoneNumber = phoneNumber};
+            if (ModelState.IsValid)
+            {
+                _peopleService.Edit(id, person);
+            }
+
+            return View("Index", _peopleService.All());
         }
 
         [HttpGet]

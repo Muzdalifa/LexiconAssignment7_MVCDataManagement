@@ -25,7 +25,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         {
             Person personToUpdate = _peopleRepo.Read(id);
 
-            if (person != null)
+            if (personToUpdate != null)
 
             {
                 return _peopleRepo.Update(person);
