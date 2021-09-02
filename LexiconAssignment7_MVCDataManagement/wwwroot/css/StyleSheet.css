@@ -4,30 +4,39 @@
 body {
     padding:30px;
     width:80%;
+    min-height:100vh;
     margin:auto;
     background-color: lightgray;
-    height:100vh;
-    display:flex;
-    justify-content:center
+/*    display:flex;
+    justify-content:center;*/
+
 }
 
 a{
     color:black;
+    cursor:pointer;
 }
 a:hover{
     color:white;
 }
 
-table {
+.data {
     width: 80%;
-    margin: auto;
     /*table-layout: fixed;*/ /*keep column with same size*/
 }
 input{
     padding: 8px;
 }
-.header-table{
-    /*font-size:large;*/
-    font-weight:700;
+input[type=button],input[type=submit]{
+width:80px;
+}
+.header-table {
+    align-items: center;
+    padding: unset;
+    height: 44px;
+    font-weight: 700;
     border-bottom: solid black 1px;
+}
+form{
+    padding:0px;
 }
