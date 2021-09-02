@@ -6,7 +6,7 @@ body {
     width:80%;
     margin:auto;
     background-color: lightgray;
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center
 }
@@ -26,5 +26,12 @@ a:hover{
 }
 input{
     padding: 10px;
+}
 
+.hide{
+    display: none;
+}
+
+.show{
+    display:block;
 }

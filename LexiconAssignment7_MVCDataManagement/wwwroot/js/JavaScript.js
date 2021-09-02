@@ -4,6 +4,15 @@
     document.getElementById("phone").value = "";
 }
 
+//$("document").ready(function () {
+//    $("#edit-btn").click(function () {
+//        $("#edit-div").removeClass("hide");
+//        $("#edit-div").addClass("show");
+//    });
+//});
+
+
+
 function showDiv(p) {
     console.log(p)
     document.getElementById("editID").value = p.id;

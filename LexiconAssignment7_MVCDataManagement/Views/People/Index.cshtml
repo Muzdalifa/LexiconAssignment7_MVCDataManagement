@@ -61,7 +61,7 @@
                         <td>@person.City</td>
                         <td>@person.PhoneNumber</td>
                         <td><a asp-action="Delete" asp-route-id="@person.ID">Delete</a></td>
-                        <td><a id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</a></td>
+                        <td><a href ="#edit-div"id="edit-link" onclick="showDiv({id:'@person.ID', name:'@person.Name', city:'@person.City', phoneNumber: '@person.PhoneNumber'})">Edit</a></td>
                     </tr>
                 }
             </tbody>
