@@ -25,19 +25,27 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public bool Delete(Person person)
         {
-            var personToDelete = _db.People
+            if (person != null)
+            {
+                var personToDelete = _db.People
                 .Where<Person>(x => x.ID == person.ID)
                 .FirstOrDefault();
-            if(personToDelete != null)
-            {
-                _db.People.Remove(personToDelete);
-                _db.SaveChanges();
-                return true;
+                if (personToDelete != null)
+                {
+                    _db.People.Remove(personToDelete);
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
-            }          
+            }
+                     
         }
 
         public List<Person> Read()
