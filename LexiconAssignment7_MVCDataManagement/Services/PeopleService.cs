@@ -44,7 +44,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         {
             Person personToUpdate = _peopleRepo.Read(id);
 
-            if (person != null)
+            if (personToUpdate != null)
 
             {
                 return _peopleRepo.Update(person);
@@ -65,8 +65,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
             search.People =  _peopleRepo.Read().FindAll(
-                person=>person.Name.Contains(search.Search) 
-                || person.City.Contains(search.Search) 
+                person=>person.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase) 
+                || person.City.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase) 
                 || person.PhoneNumber.Contains(search.Search)
             );
 

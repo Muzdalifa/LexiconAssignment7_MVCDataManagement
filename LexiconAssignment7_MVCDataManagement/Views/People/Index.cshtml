@@ -3,38 +3,52 @@
     ViewData["Title"] = "Peples records";
 }
 
-<h1 class="py-3">Welcome to People's records</h1>
+<h1 class="align-text-center">Welcome to People's records</h1>
 
-<div class="row container-fluid py-2" >
-    <form asp-controller="People" asp-action="Create" method="post" id="create-form">
+<div class="row py-3" >
+    <form asp-controller="People" asp-action="Create" method="post" id="create-form" class="p-0">
         <span asp-validation-for="Person.Name" class="text-danger"></span>
-        <input asp-for="Person.Name" id="name" placeholder="Enter name"/>
+        <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4"/>
         <span asp-validation-for="Person.City" class="text-danger"></span>
-        <input asp-for="Person.City" id="city" placeholder="Enter city" />
+        <input asp-for="Person.City" id="city" placeholder="Enter city" class="me-4"/>
         <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-        <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number"/>
-        <input type="submit" class="btn btn-secondary" value="Add">
-        <input type="button" class="btn btn-secondary" value="Reset" id="reset" onclick="Clear()">
+        <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="me-4"/>
+        <input type="submit" class="btn btn-secondary me-4" value="Add">
+        <input type="button" class="btn btn-secondary me-4" value="Reset" id="reset" onclick="Clear()">
     </form>
 </div>
 
-<div class="row container-fluid py-2">
-    <form asp-controller="People" asp-action="Index" method="get">
-        <label asp-for="Search">Please enter your string to search</label>
-        <input asp-for="Search" />
+<div class="row py-3">
+    <form asp-controller="People" asp-action="Index" method="get" class="p-0">
+        <label asp-for="Search" class="me-4">Please enter your string to search</label>
+        <input asp-for="Search" class="me-4" />
         <input type="submit" class="btn btn-secondary" value="Search">
     </form>
 </div>
 
-<div class="row container-fluid py-2">
+<div class="row p-3" id="edit-div">
+    <form asp-controller="People" asp-action="Edit" method="post" id="edit-form" class="p-0">
+        <label class="me-4">Edit person </label>
+        <input id="editID" name="id" type="hidden" />
+        <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
+        <input asp-for="EditPerson.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
+        <span asp-validation-for="EditPerson.City"></span>
+        <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />
+        <span asp-validation-for="EditPerson.PhoneNumber"></span>
+        <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" name="phoneNumber" class="me-4" placeholder="Enter phonenumber" />
+        <input type="submit" class="btn btn-secondary" id="edit-btn" value="Save" />
+    </form>
+</div>
+
+<div class="row py-3">
     <div class="col">
-        <div class="row header-table">
-            <div class="col heading">ID</div>
+        <div class="row bg-gradient bg-opacity-75 bg-secondary header-table">
+            <div class="col">ID</div>
             <div class="col">Name</div>
             <div class="col">City</div>
-            <div class="col">Phone number</div>
+            <div class="col w-25">Phone number</div>
             <div class="col"></div>
-            <br />
+            <div class="col"></div>
         </div>
 
         @foreach (Person person in Model.People)
