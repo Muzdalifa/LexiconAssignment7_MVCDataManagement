@@ -1,0 +1,21 @@
+﻿@model List<Person>
+
+<div class="row p-3">
+    <div class="col">
+        <div class="row bg-gradient bg-opacity-75 bg-secondary header-table">
+            <div class="col">ID</div>
+            <div class="col">Name</div>
+            <div class="col">City</div>
+            <div class="col">Phone number</div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+
+        @foreach (Person person in Model)
+        {
+            <partial name="_PertialAjaxPeopleView.cshtml" model="person" />
+        }
+
+    </div>
+</div>
+
