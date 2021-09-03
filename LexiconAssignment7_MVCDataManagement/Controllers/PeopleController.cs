@@ -44,6 +44,18 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
                 return View("Index",_peopleService.All());          
         }
 
+        [HttpPost]
+        public IActionResult Edit(int id, string name, string city, string phoneNumber)
+        {
+            Person person = new Person { ID = id, Name = name, City = city, PhoneNumber = phoneNumber };
+            if (ModelState.IsValid)
+            {
+                _peopleService.Edit(id, person);
+            }
+
+            return View("Index", _peopleService.All());
+        }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
