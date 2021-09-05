@@ -1,5 +1,7 @@
-﻿using LexiconAssignment7_MVCDataManagement.Models;
+﻿using LexiconAssignment7_MVCDataManagement.Data;
+using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LexiconAssignment7_MVCDataManagement.Services
 {
@@ -8,10 +10,12 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     /// </summary>
     public class PeopleService : IPeopleService
     {
-        private IPeopleRepo _peopleRepo; 
-        public PeopleService(IPeopleRepo peopleRepo)
+        private readonly IPeopleRepo _peopleRepo;
+        private readonly ICityRepo _cityRepo;
+        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo)
         {
             _peopleRepo = peopleRepo;
+            _cityRepo = cityRepo;
         }
 
         /// <summary>
@@ -30,7 +34,10 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         /// <returns> Object of type <paramref name="PeopleViewModel"/></returns>
         public PeopleViewModel All()
         {
-            PeopleViewModel peopleViewModel = new PeopleViewModel { People = _peopleRepo.Read() };
+            PeopleViewModel peopleViewModel = new PeopleViewModel { 
+                People = _peopleRepo.Read(),
+                Cities = new SelectList(_cityRepo.Read(), "Name", "Name") };
+
             return peopleViewModel;
         }
 

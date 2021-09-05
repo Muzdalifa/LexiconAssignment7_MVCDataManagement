@@ -10,8 +10,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     public interface ICityService
     {
         City Add(CreateCityViewModel person);
-        PeopleViewModel All();
-        PeopleViewModel FindBy(PeopleViewModel search);
+        CityViewModel All();
+        CityViewModel FindBy(PeopleViewModel search);
         City FindBy(int id);
         City Edit(int id, City person);
         bool Remove(int id);

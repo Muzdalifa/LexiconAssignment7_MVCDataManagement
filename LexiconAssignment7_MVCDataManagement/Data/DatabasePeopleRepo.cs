@@ -16,7 +16,8 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         }
         public Person Create(CreatePersonViewModel person)
         {
-            Person newPerson = new Person { Name = person.Name, City = person.City, PhoneNumber = person.PhoneNumber };
+            
+            Person newPerson = new Person { Name = person.Name, City = new City { Name = person.City}, PhoneNumber = person.PhoneNumber };
             _db.People.Add(newPerson);
             _db.SaveChanges();
 

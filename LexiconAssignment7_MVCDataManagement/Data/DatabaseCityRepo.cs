@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Data
 {
-    public class DatabaseCityRepo
+    public class DatabaseCityRepo:ICityRepo
     {
         private readonly PeopleDbContext _db;
         public DatabaseCityRepo(PeopleDbContext peopleDbContext)

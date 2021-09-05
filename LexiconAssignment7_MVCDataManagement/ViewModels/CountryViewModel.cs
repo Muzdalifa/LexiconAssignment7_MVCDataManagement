@@ -8,7 +8,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
 {
     public class CountryViewModel
     {
-        public CreateCountryViewModel City { get; set; }
+        public CreateCountryViewModel Country { get; set; }
 
         public List<Country> People = new List<Country>();
         public string Search { get; set; }

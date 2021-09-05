@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Services
 {
-    public class CityService
+    public class CityService:ICityService
     {
         private ICityRepo _cityRepo; 
         public CityService(ICityRepo cityRepo)
@@ -64,6 +64,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         /// </summary>
         /// <param name="search"></param>
         /// <returns>Object of type <paramref name="CityViewModel"/></returns>
+
+
         public CityViewModel FindBy(CityViewModel search)
         {
             search.Cities = _cityRepo.Read().FindAll(
@@ -81,6 +83,11 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         public City FindBy(int id)
         {
             return _cityRepo.Read(id);
+        }
+
+        public CityViewModel FindBy(PeopleViewModel search)
+        {
+            throw new NotImplementedException();
         }
 
 

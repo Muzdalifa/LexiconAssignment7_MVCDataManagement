@@ -2,6 +2,7 @@
 using LexiconAssignment7_MVCDataManagement.Services;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
     public class PeopleController : Controller
     {
         private readonly IPeopleService _peopleService;
+        private readonly ICityService _cityService;
 
-        public PeopleController(IPeopleService peopleService)
+        public PeopleController(IPeopleService peopleService, ICityService cityService)
         {
             _peopleService = peopleService;
+            _cityService = cityService;
         }
 
         public IActionResult Index(PeopleViewModel peopleViewModel)

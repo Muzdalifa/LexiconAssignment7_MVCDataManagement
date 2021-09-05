@@ -1,6 +1,7 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LexiconAssignment7_MVCDataManagement.ViewModels
 {
@@ -12,9 +13,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         //[StringLength(50)]
         public string Name { set; get; }
 
-        [Required(ErrorMessage = "You need to fill out city field!")]
-        [MinLength(2), MaxLength(50)]       
-        public City City { set; get; }
+        public string City { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [MinLength(12), MaxLength(13)]

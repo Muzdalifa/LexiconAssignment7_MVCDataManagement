@@ -34,10 +34,11 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         public Person Create(CreatePersonViewModel person)
         {
             idCounter++;
+
             Person newPerson =  new Person { 
                 ID = IdCounter,
                 Name = person.Name,
-                City = person.City,
+                City = new City { Name = person.City },
                 PhoneNumber = person.PhoneNumber 
             };       
       
