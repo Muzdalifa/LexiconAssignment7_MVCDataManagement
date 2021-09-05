@@ -20,7 +20,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult Index(PeopleViewModel peopleViewModel)
         {
-            PeopleViewModel people = new PeopleViewModel();
+            //PeopleViewModel people = new PeopleViewModel();
 
             if (!string.IsNullOrEmpty(peopleViewModel.Search))
             {
@@ -45,7 +45,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, string name, string city, string phoneNumber)
+        public IActionResult Edit(int id, string name, City city, string phoneNumber)
         {
             Person person = new Person { ID = id, Name = name, City = city, PhoneNumber = phoneNumber };
             if (ModelState.IsValid)

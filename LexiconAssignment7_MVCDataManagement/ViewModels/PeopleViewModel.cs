@@ -8,13 +8,11 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public CreatePersonViewModel Person { get; set; }
 
         public List<Person> People = new List<Person>();
-
+        public CityViewModel City { get; set; }
+        public CountryViewModel Country { get; set; }
         public CreatePersonViewModel EditPerson { get; set; }
         public string Search { get; set; }
         public string DeleteError { get; set; }
-
-
-
 
     }
 }

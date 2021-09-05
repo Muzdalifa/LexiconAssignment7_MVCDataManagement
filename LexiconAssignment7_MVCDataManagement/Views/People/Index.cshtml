@@ -9,8 +9,8 @@
     <form asp-controller="People" asp-action="Create" method="post" id="create-form" class="p-0">
         <span asp-validation-for="Person.Name" class="text-danger"></span>
         <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4"/>
-        <span asp-validation-for="Person.City" class="text-danger"></span>
-        <input asp-for="Person.City" id="city" placeholder="Enter city" class="me-4"/>
+        <span asp-validation-for="City.City" class="text-danger"></span>
+        <input asp-for="City.City" id="city" placeholder="Enter city" class="me-4"/>
         <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
         <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="me-4"/>
         <input type="submit" class="btn btn-secondary me-4" value="Add">

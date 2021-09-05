@@ -66,7 +66,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         {
             search.People =  _peopleRepo.Read().FindAll(
                 person=>person.Name.Contains(search.Search,System.StringComparison.OrdinalIgnoreCase) 
-                || person.City.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase) 
+                || person.City.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase) 
                 || person.PhoneNumber.Contains(search.Search)
             );
 
