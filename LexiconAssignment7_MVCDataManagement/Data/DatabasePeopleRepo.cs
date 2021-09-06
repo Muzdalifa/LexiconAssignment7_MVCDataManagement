@@ -10,14 +10,17 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     public class DatabasePeopleRepo : IPeopleRepo
     {
         private readonly PeopleDbContext _db;
-        public DatabasePeopleRepo(PeopleDbContext peopleDbContext)
+        private readonly ICityRepo _cityRepo;
+        public DatabasePeopleRepo(PeopleDbContext peopleDbContext, ICityRepo cityRepo)
         {
             _db = peopleDbContext;
+            _cityRepo = cityRepo;
         }
         public Person Create(CreatePersonViewModel person)
         {
+            City selectedCity = _cityRepo.Read(Convert.ToInt32(person.City));
 
-            Person newPerson = new Person { Name = person.Name, City = new City { Name = person.City}, PhoneNumber = person.PhoneNumber };            
+            Person newPerson = new Person { Name = person.Name, City =  selectedCity, PhoneNumber = person.PhoneNumber };            
             _db.People.Add(newPerson);
             _db.SaveChanges();
 
