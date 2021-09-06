@@ -28,13 +28,13 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             if (!string.IsNullOrEmpty(peopleViewModel.Search))
             {
                 return View(_peopleService.FindBy(peopleViewModel));
-
             }
             else
             {
                 return View( _peopleService.All());
             }          
         }
+
 
         [HttpPost]
         //create person

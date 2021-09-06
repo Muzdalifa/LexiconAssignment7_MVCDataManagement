@@ -34,9 +34,11 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         /// <returns> Object of type <paramref name="PeopleViewModel"/></returns>
         public PeopleViewModel All()
         {
-            PeopleViewModel peopleViewModel = new PeopleViewModel { 
+            PeopleViewModel peopleViewModel = new PeopleViewModel {
                 People = _peopleRepo.Read(),
-                Cities = new SelectList(_cityRepo.Read(), "Name", "Name") };
+                //Cities = new SelectList(_cityRepo.Read(), "Name", "Name")
+                Cities = _cityRepo.Read()
+            };
 
             return peopleViewModel;
         }

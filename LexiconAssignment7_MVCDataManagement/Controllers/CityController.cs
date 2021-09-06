@@ -18,7 +18,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             _cityService = cityService;
         }
 
-        public IActionResult Index(PeopleViewModel cityViewModel)
+        public IActionResult Index(CityViewModel cityViewModel)
         {
             if(!string.IsNullOrEmpty(cityViewModel.Search))
             {
@@ -44,7 +44,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         [HttpPost]
         public IActionResult Edit(int id, string city)
         {
-            City editedCity = new City { ID = id, Name = city, };
+            City editedCity = new City { Name = city, };
             if (ModelState.IsValid)
             {
                 _cityService.Edit(id, editedCity);

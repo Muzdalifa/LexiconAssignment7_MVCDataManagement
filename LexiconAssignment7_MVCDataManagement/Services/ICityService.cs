@@ -11,7 +11,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     {
         City Add(CreateCityViewModel person);
         CityViewModel All();
-        CityViewModel FindBy(PeopleViewModel search);
+        CityViewModel FindBy(CityViewModel search);
         City FindBy(int id);
         City Edit(int id, City person);
         bool Remove(int id);

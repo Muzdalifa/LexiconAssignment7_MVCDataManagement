@@ -10,8 +10,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     public interface ICountryService
     {
         Country Add(CreateCountryViewModel person);
-        PeopleViewModel All();
-        PeopleViewModel FindBy(PeopleViewModel search);
+        CountryViewModel All();
+        CountryViewModel FindBy(CountryViewModel search);
         Country FindBy(int id);
         Country Edit(int id, Country person);
         bool Remove(int id);

@@ -8,10 +8,17 @@
 <div class="row py-3" >
     <form asp-controller="People" asp-action="Create" method="post" id="create-form" class="p-0">
         <span asp-validation-for="Person.Name" class="text-danger"></span>
-        <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4"/>
-        <select asp-for="Person.City" asp-items="Model.Cities"></select>
+        <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4" />
+        @*<select asp-for="Person.City" asp-items="ViewBag.Cities"></select>*@
+        <select asp-for="Person.City">
+            <option value="" disabled>Select a City</option>
+            @foreach (City item in Model.Cities)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
         <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
-        <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="me-4"/>
+        <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="me-4" />
         <input type="submit" class="btn btn-secondary me-4" value="Add">
         <input type="button" class="btn btn-secondary me-4" value="Reset" id="reset" onclick="Clear()">
     </form>

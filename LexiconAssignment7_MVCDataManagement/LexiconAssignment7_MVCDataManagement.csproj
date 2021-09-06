@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210905001450_AddCountryAndCityTable.cs" />
     <Compile Remove="Migrations\20210905001450_AddCountryAndCityTable.Designer.cs" />
+    <Compile Remove="Migrations\20210905002128_AddCountryAndCityTable.cs" />
+    <Compile Remove="Migrations\20210905002128_AddCountryAndCityTable.Designer.cs" />
+    <Compile Remove="Migrations\20210906131305_RemovePopulationColumn.cs" />
+    <Compile Remove="Migrations\20210906131305_RemovePopulationColumn.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

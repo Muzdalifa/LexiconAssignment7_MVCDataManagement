@@ -18,7 +18,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             _countryService = countryService;
         }
 
-        public IActionResult Index(PeopleViewModel countryViewModel)
+        public IActionResult Index(CountryViewModel countryViewModel)
         {
             if (!string.IsNullOrEmpty(countryViewModel.Search))
             {
