@@ -5,7 +5,7 @@
 }
 
 function showDiv(p) {
-    console.log(p)
+    console.log(p.city);
     document.getElementById("editID").value = p.id;
     console.log(document.getElementById("editID").value);
     document.getElementById("editName").value = p.name;

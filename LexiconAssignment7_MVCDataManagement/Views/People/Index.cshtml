@@ -38,8 +38,15 @@
         <input id="editID" name="id" type="hidden" />
         <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
         <input asp-for="EditPerson.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
-        <span asp-validation-for="EditPerson.City"></span>
-        <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />
+        @*<span asp-validation-for="EditPerson.City"></span>
+        <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />*@
+        <select asp-for="EditPerson.City">
+            <option value="Select a City" disabled id="selectBox"></option>
+            @foreach (City item in Model.Cities)
+            {
+                <option value="@item.ID" name="city">@item.Name</option>
+            }
+        </select>
         <span asp-validation-for="EditPerson.PhoneNumber"></span>
         <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" name="phoneNumber" class="me-4" placeholder="Enter phonenumber" />
         <input type="submit" class="btn btn-secondary" id="edit-btn" value="Save" />
