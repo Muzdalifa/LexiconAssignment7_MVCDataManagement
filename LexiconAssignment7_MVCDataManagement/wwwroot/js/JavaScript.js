@@ -7,9 +7,10 @@
 function showDiv(p) {
     console.log(p.city);
     document.getElementById("editID").value = p.id;
-    console.log(document.getElementById("editID").value);
     document.getElementById("editName").value = p.name;
-    document.getElementById("editCity").value = p.city;
+    //change the value of drop down list
+    
+    document.getElementById("selectCity").selectedIndex = p.city;
     document.getElementById("editPhoneNumber").value = p.phoneNumber;
 }
 

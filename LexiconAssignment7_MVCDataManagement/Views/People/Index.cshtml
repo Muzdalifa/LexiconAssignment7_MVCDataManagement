@@ -40,11 +40,11 @@
         <input asp-for="EditPerson.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
         @*<span asp-validation-for="EditPerson.City"></span>
         <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />*@
-        <select asp-for="EditPerson.City">
-            <option value="Select a City" disabled id="selectBox"></option>
+        <select asp-for="EditPerson.City" id="selectCity" name="city" >
+            <option value="Select a City" disabled ></option>
             @foreach (City item in Model.Cities)
             {
-                <option value="@item.ID" name="city">@item.Name</option>
+                <option value="@item.ID" >@item.Name</option>
             }
         </select>
         <span asp-validation-for="EditPerson.PhoneNumber"></span>

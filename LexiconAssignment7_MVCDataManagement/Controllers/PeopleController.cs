@@ -48,12 +48,12 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         [HttpPost]
         public IActionResult Edit(int id, string name, string city, string phoneNumber)
         {
-            //City selectedCity = _cityService.Read(Convert.ToInt32(city));
-            //Person person = new Person { ID = id, Name = name, City = city, PhoneNumber = phoneNumber };
-            //if (ModelState.IsValid)
-            //{
-            //    _peopleService.Edit(id, person);
-            //}
+            City selectedCity = _cityService.FindBy(Convert.ToInt32(city));
+            Person person = new Person { ID = id, Name = name, City = selectedCity, PhoneNumber = phoneNumber };
+            if (ModelState.IsValid)
+            {
+                _peopleService.Edit(id, person);
+            }
 
             return View("Index", _peopleService.All());
         }
