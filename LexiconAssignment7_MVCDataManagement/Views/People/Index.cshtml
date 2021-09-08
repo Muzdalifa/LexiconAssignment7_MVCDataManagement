@@ -10,8 +10,8 @@
         <span asp-validation-for="Person.Name" class="text-danger"></span>
         <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4" />
         @*<select asp-for="Person.City" asp-items="ViewBag.Cities"></select>*@
-        <select asp-for="Person.City">
-            <option value="" disabled>Select a City</option>
+        <select asp-for="Person.City" class="me-4">
+            <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
                 <option value="@item.ID">@item.Name</option>
@@ -40,8 +40,8 @@
         <input asp-for="EditPerson.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
         @*<span asp-validation-for="EditPerson.City"></span>
         <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />*@
-        <select asp-for="EditPerson.City" id="selectCity" name="city" >
-            <option value="Select a City" disabled ></option>
+        <select asp-for="EditPerson.City" id="selectCity" name="city" class="me-4" placeholder="SElect">
+            <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
                 <option value="@item.ID" >@item.Name</option>

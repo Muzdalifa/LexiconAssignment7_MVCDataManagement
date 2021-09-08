@@ -22,7 +22,7 @@ a:hover{
     color:white;
 }
 
-input {
+input,select {
     padding: 8px;
 }
 
@@ -30,7 +30,7 @@ p {
     font-size: 16px;
 }
 
-input[type=button], input[type=submit] {
+input[type=button], input[type=submit], select {
     width: 80px;
 }
 
@@ -53,4 +53,8 @@ form {
 
 .data {
     width: 80%;
+}
+select {
+    width: 197px;
+    height: 44px;
 }
