@@ -12,7 +12,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public int ID { get; set; }
 
         [Required(ErrorMessage = "You need to fill out name field!")]
-        [RegularExpression(@"[A-z]*", ErrorMessage = "Use only alphabets.")]
+        [RegularExpression(@"[A-zåöä]*", ErrorMessage = "Use only alphabets.")]
         [MinLength(2), MaxLength(50)]
         public string Name { get; set; }
         public List<Person> People { get; set; }

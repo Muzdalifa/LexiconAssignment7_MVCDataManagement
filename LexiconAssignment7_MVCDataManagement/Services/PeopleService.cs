@@ -35,8 +35,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         public PeopleViewModel All()
         {
             PeopleViewModel peopleViewModel = new PeopleViewModel {
+
                 People = _peopleRepo.Read(),
-                //Cities = new SelectList(_cityRepo.Read(), "Name", "Name")
                 Cities = _cityRepo.Read()
             };
 

@@ -8,11 +8,14 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
     public class CreatePersonViewModel
     {
         [Required(ErrorMessage = "You need to fill out name field!")]
-        [RegularExpression(@"[A-z]*", ErrorMessage = "Use only alphabets.")]
+        [RegularExpression(@"[A-zöåä]*", ErrorMessage = "Use only alphabets.")]
         [MinLength(2),MaxLength(50)]
         //[StringLength(50)]
         public string Name { set; get; }
 
+        [Required(ErrorMessage = "You need to fill out city field!")]
+        [RegularExpression(@"[0-9A-zåäö-]*", ErrorMessage = "You can not use special character.")]
+        [MinLength(2), MaxLength(50)]
         public string City { get; set; }
 
         [DataType(DataType.PhoneNumber)]

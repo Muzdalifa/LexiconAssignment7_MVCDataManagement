@@ -9,7 +9,7 @@ function showDiv(p) {
     document.getElementById("editID").value = p.id;
     document.getElementById("editName").value = p.name;
     //change the value of drop down list
-    
+    //if (document.getElementById("selectCity").value == p.city)
     document.getElementById("selectCity").selectedIndex = p.city;
     document.getElementById("editPhoneNumber").value = p.phoneNumber;
 }
