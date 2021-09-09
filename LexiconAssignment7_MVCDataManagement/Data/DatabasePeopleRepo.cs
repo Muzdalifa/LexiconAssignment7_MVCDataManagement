@@ -67,10 +67,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public Person Read(int id)
         {
-            //without using linq
-            //return _db.People.ToList<Person>().FirstOrDefault<Person>(x => x.ID == id);
-
-            //using linq
             Person personToRead = (from person in _db.People
                                    select person)
                                    .Include(c => c.City)

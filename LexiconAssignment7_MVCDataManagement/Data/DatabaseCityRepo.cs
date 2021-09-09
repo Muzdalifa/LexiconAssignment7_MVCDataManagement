@@ -28,8 +28,9 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if (city != null)
             {
                 var cityToDelete = _db.Cities
-                .Where<City>(x => x.ID == city.ID)
-                .FirstOrDefault();
+                    .Where<City>(x => x.ID == city.ID)
+                    .FirstOrDefault();
+
                 if (cityToDelete != null)
                 {
                     _db.Cities.Remove(cityToDelete);

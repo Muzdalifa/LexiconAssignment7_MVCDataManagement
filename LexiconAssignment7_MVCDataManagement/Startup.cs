@@ -31,10 +31,15 @@ namespace LexiconAssignment7_MVCDataManagement
             //services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
             services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();
             services.AddScoped<IPeopleService, PeopleService>();
+
             services.AddScoped<ICityRepo,DatabaseCityRepo>();
             services.AddScoped<ICityService, CityService>();
+
             services.AddScoped<ICountryRepo, DatabaseCountryRepo>();
             services.AddScoped<ICountryService, CountryService>();
+
+            services.AddScoped<ILanguageRepo, DatabaseLanguageRepo>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddControllersWithViews();
 
