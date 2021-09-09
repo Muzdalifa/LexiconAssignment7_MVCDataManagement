@@ -1,8 +1,13 @@
 ﻿function Clear() {
     document.getElementById("name").value = "";
-    document.getElementById("city").value = "";
+    document.getElementById("addCity").selectedIndex = 0;
+    console.log(document.getElementById("selectCity").value);
     document.getElementById("phone").value = "";
 }
+
+//$("#reset").on("click", function () {
+//    $('#addCity').prop('selectedIndex', 0);
+//});
 
 function showDiv(p) {
     console.log(p.city);
@@ -10,9 +15,19 @@ function showDiv(p) {
     document.getElementById("editName").value = p.name;
     //change the value of drop down list
     //if (document.getElementById("selectCity").value == p.city)
-    document.getElementById("selectCity").selectedIndex = p.city;
+    itemList = document.getElementById("selectCity");
+    var item = p.city;
+    for (var i = 1; i < itemList.options.length; i++) {
+        if (itemList.options[i].innerHTML === item) {
+            itemList.selectedIndex = i;
+            break;
+        }
+    }
+    //document.getElementById("selectCity").selectedIndex = p.city;
     document.getElementById("editPhoneNumber").value = p.phoneNumber;
 }
+
+
 
 //for ajax controller
 function personShow() {

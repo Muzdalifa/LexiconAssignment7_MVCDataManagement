@@ -23,7 +23,6 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult Index(PeopleViewModel peopleViewModel)
         {
-
             if (!string.IsNullOrEmpty(peopleViewModel.Search))
             {
                 return View(_peopleService.FindBy(peopleViewModel));
@@ -50,6 +49,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         {
             City selectedCity = _cityService.FindBy(Convert.ToInt32(city));
             Person person = new Person { ID = id, Name = name, City = selectedCity, PhoneNumber = phoneNumber };
+
             if (ModelState.IsValid)
             {
                 _peopleService.Edit(id, person);

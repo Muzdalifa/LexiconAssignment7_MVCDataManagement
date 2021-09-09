@@ -6,5 +6,5 @@
     <div class="col">@Model.City.Name</div>
     <div class="col">@Model.PhoneNumber</div>
     <div class="col"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>
-    <div class="col"><a href="#edit-div" id="edit-link" onclick="showDiv({id:'@Model.ID', name:'@Model.Name', city:'@Model.City.ID', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
+    <div class="col"><a href="#edit-div" id="edit-link" onclick="showDiv({id:'@Model.ID', name:'@Model.Name', city:'@Model.City.Name', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
 </div>

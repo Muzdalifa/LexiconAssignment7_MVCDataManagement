@@ -1,5 +1,6 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,13 +56,13 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public List<Person> Read()
         {
             //without using linq
-            //return  _db.People.ToList<Person>();
+            return  _db.People.Include(c => c.City).ToList<Person>();
 
             //using linq
-            var query = from person in _db.People
-                        select person;
+            //var query = from person in _db.People
+            //            select person;
 
-            return query.ToList<Person>();
+            //return query.ToList<Person>();
         }
 
         public Person Read(int id)
@@ -71,9 +72,10 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
             //using linq
             Person personToRead = (from person in _db.People
-                         select person)
-                        .FirstOrDefault(person => person.ID == id); 
-            
+                                   select person)
+                                   .Include(c => c.City)
+                                   .FirstOrDefault(person => person.ID == id);
+
             return personToRead;
         }
 

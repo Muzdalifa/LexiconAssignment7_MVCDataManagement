@@ -10,7 +10,7 @@
         <span asp-validation-for="Person.Name" class="text-danger"></span>
         <input asp-for="Person.Name" id="name" placeholder="Enter name" class="me-4" />
         @*<select asp-for="Person.City" asp-items="ViewBag.Cities"></select>*@
-        <select asp-for="Person.City" class="me-4">
+        <select asp-for="Person.City" class="me-4" id="addCity">
             <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
@@ -38,8 +38,6 @@
         <input id="editID" name="id" type="hidden" />
         <span asp-validation-for="EditPerson.Name" class="text-danger"></span>
         <input asp-for="EditPerson.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
-        @*<span asp-validation-for="EditPerson.City"></span>
-        <input asp-for="EditPerson.City" id="editCity" name="city" class="me-4" placeholder="Enter city" />*@
         <select asp-for="EditPerson.City" id="selectCity" name="city" class="me-4" placeholder="SElect">
             <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
@@ -64,7 +62,6 @@
             <div class="col"></div>
             <div class="col"></div>
         </div>
-
         @foreach (Person person in Model.People)
         {
             <partial name="_PartialPeopleView.cshtml" model="person"/>

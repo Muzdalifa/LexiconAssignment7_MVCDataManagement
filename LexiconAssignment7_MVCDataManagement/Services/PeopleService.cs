@@ -73,9 +73,10 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         /// <returns>Object of type <paramref name="PeopleViewModel"/></returns>
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
-            search.People =  _peopleRepo.Read().FindAll(
-                person=>person.Name.Contains(search.Search,System.StringComparison.OrdinalIgnoreCase) 
-                || person.City.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase) 
+            search.People = _peopleRepo.Read();
+            search.People = _peopleRepo.Read().FindAll(
+                person => person.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
+                || person.City.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
                 || person.PhoneNumber.Contains(search.Search)
             );
 
