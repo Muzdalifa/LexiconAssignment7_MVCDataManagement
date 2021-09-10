@@ -41,6 +41,8 @@ namespace LexiconAssignment7_MVCDataManagement
             services.AddScoped<ILanguageRepo, DatabaseLanguageRepo>();
             services.AddScoped<ILanguageService, LanguageService>();
 
+            services.AddScoped<IPersonLanguageRepo, DatabasePersonLanguageRepo>();
+
             services.AddControllersWithViews();
 
             services.AddDbContext<PeopleDbContext>(options=> {

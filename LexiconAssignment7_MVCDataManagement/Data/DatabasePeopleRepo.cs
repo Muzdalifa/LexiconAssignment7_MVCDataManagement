@@ -12,18 +12,26 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     {
         private readonly PeopleDbContext _db;
         private readonly ICityRepo _cityRepo;
-        public DatabasePeopleRepo(PeopleDbContext peopleDbContext, ICityRepo cityRepo)
+        private readonly ILanguageRepo _languageRepo;
+        private readonly IPersonLanguageRepo _personLanguageRepo;
+        public DatabasePeopleRepo(PeopleDbContext peopleDbContext, ICityRepo cityRepo, ILanguageRepo languageRepo, IPersonLanguageRepo personLanguageRepo)
         {
             _db = peopleDbContext;
             _cityRepo = cityRepo;
+            _languageRepo = languageRepo;
+            _personLanguageRepo = personLanguageRepo;
         }
         public Person Create(CreatePersonViewModel person)
         {
             City selectedCity = _cityRepo.Read(Convert.ToInt32(person.City));
 
+            Language selectedLanguage = _languageRepo.Read(Convert.ToInt32(person.PersonLanguage));
+
             Person newPerson = new Person { Name = person.Name, City =  selectedCity, PhoneNumber = person.PhoneNumber };            
             _db.People.Add(newPerson);
             _db.SaveChanges();
+
+            _personLanguageRepo.Create(newPerson, selectedLanguage);
 
             return newPerson;
         }
@@ -49,20 +57,13 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             else
             {
                 return false;
-            }
-                     
+            }                     
         }
 
         public List<Person> Read()
         {
             //without using linq
-            return  _db.People.Include(c => c.City).ToList<Person>();
-
-            //using linq
-            //var query = from person in _db.People
-            //            select person;
-
-            //return query.ToList<Person>();
+            return  _db.People.Include(c => c.City).Include(c=>c.PersonLanguages).ToList<Person>();
         }
 
         public Person Read(int id)
@@ -70,6 +71,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             Person personToRead = (from person in _db.People
                                    select person)
                                    .Include(c => c.City)
+                                   .Include(c => c.PersonLanguages)
                                    .FirstOrDefault(person => person.ID == id);
 
             return personToRead;

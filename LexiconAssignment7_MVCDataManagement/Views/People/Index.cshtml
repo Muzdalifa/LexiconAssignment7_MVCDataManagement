@@ -17,6 +17,13 @@
                 <option value="@item.ID">@item.Name</option>
             }
         </select>
+        <select asp-for="Person.PersonLanguage" class="me-4 multiple-select" multiple >
+            <option value="" selected>Select Languages</option>
+            @foreach (Language item in Model.Languages)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
         <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
         <input asp-for="Person.PhoneNumber" id="phone" placeholder="Enter phone number" class="me-4" />
         <input type="submit" class="btn btn-secondary me-4" value="Add">
@@ -58,6 +65,7 @@
             <div class="col heading">ID</div>
             <div class="col">Name</div>
             <div class="col">City</div>
+            <div class="col">Languages</div>
             <div class="col w-25">Phone number</div>
             <div class="col"></div>
             <div class="col"></div>

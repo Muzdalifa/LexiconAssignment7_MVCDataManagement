@@ -12,10 +12,12 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     {
         private readonly IPeopleRepo _peopleRepo;
         private readonly ICityRepo _cityRepo;
-        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo)
+        private readonly ILanguageRepo _languageRepo;
+        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ILanguageRepo languageRepo)
         {
             _peopleRepo = peopleRepo;
             _cityRepo = cityRepo;
+            _languageRepo = languageRepo;
         }
 
         /// <summary>
@@ -37,7 +39,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             PeopleViewModel peopleViewModel = new PeopleViewModel {
 
                 People = _peopleRepo.Read(),
-                Cities = _cityRepo.Read()
+                Cities = _cityRepo.Read(),
+                Languages = _languageRepo.Read()
             };
 
             return peopleViewModel;

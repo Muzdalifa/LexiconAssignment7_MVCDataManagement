@@ -42,7 +42,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
 
         [HttpPost]
-        public IActionResult Edit(int id, string city)
+        public IActionResult Edit(int id, string city) //TODO: change to string to objcet City and test
         {
             City editedCity = new City { Name = city, };
             if (ModelState.IsValid)

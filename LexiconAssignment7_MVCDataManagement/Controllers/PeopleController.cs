@@ -14,11 +14,13 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
     {
         private readonly IPeopleService _peopleService;
         private readonly ICityService _cityService;
+        private readonly ILanguageService _languageService;
 
-        public PeopleController(IPeopleService peopleService, ICityService cityService)
+        public PeopleController(IPeopleService peopleService, ICityService cityService, ILanguageService languageService)
         {
             _peopleService = peopleService;
             _cityService = cityService;
+            _languageService = languageService;
         }
 
         public IActionResult Index(PeopleViewModel peopleViewModel)

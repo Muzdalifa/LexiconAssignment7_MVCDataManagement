@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace LexiconAssignment7_MVCDataManagement.ViewModels
 {
@@ -14,9 +15,10 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public string Name { set; get; }
 
         [Required(ErrorMessage = "You need to fill out city field!")]
-        [RegularExpression(@"[0-9A-zåäöÅÄÖ-]*", ErrorMessage = "You can not use special character.")]
-        [MinLength(2), MaxLength(50)]
         public string City { get; set; }
+
+        [Required(ErrorMessage = "You need to fill out city field!")]
+        public string PersonLanguage { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [MinLength(12), MaxLength(13)]

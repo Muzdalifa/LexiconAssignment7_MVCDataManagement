@@ -22,7 +22,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
 
         public LanguageViewModel All()
         {
-            LanguageViewModel languageViewModel = new LanguageViewModel {
+            LanguageViewModel languageViewModel = new LanguageViewModel
+            {
                 Languages = _languageRepo.Read()
             };
 
