@@ -60,5 +60,13 @@ select {
 }
 .multiple-select{
     height:auto;
+}
+.display-language{
+    display:flex;
+    flex-direction:row;
+}
 
+/* span which have put-komma class and me-1 class*/
+span.put-komma.me-1:last-child { 
+display:none;
 }

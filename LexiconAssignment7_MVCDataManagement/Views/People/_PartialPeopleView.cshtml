@@ -5,10 +5,21 @@
     <div class="col">@Model.Name</div>
     <div class="col">@Model.City.Name</div>
     @*<div class="col">@Model.PersonLanguages</div>*@
+<div class="col display-language">
     @foreach (var item in Model.PersonLanguages)
     {
-        <div class="col">@item.Language.Name </div>
+        if (item != null)
+        {
+            @item.Language.Name
+            if (Model.PersonLanguages.Count > 1) 
+            {
+                <span class="put-komma me-1">,</span>
+  
+            }
+
+        }
     }
+</div>
 
     <div class="col">@Model.PhoneNumber</div>
     <div class="col"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>

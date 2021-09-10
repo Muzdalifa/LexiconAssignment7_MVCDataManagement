@@ -11,6 +11,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public List<Person> People = new List<Person>();
         public List<City> Cities { get; set; } = new List<City>();
         public List<Language> Languages { get; set; } = new List<Language>();
+        public List<PersonLanguage> PersonLanguages { get; set; } = new List<PersonLanguage>();
         public CreatePersonViewModel EditPerson { get; set; }
         public string Search { get; set; }
         public string DeleteError { get; set; }

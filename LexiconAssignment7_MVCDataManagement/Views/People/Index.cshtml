@@ -17,7 +17,7 @@
                 <option value="@item.ID">@item.Name</option>
             }
         </select>
-        <select asp-for="Person.PersonLanguage" class="me-4 multiple-select" multiple >
+        <select asp-for="Person.Languages" class="me-4" multiple>
             <option value="" selected>Select Languages</option>
             @foreach (Language item in Model.Languages)
             {
@@ -65,7 +65,6 @@
             <div class="col heading">ID</div>
             <div class="col">Name</div>
             <div class="col">City</div>
-            <div class="col">Languages</div>
             <div class="col w-25">Phone number</div>
             <div class="col"></div>
             <div class="col"></div>

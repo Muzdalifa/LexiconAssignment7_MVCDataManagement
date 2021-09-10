@@ -18,7 +18,7 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public string City { get; set; }
 
         [Required(ErrorMessage = "You need to fill out city field!")]
-        public string PersonLanguage { get; set; }
+        public int[] Languages { get; set; } 
 
         [DataType(DataType.PhoneNumber)]
         [MinLength(12), MaxLength(13)]

@@ -25,13 +25,15 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         {
             City selectedCity = _cityRepo.Read(Convert.ToInt32(person.City));
 
-            Language selectedLanguage = _languageRepo.Read(Convert.ToInt32(person.PersonLanguage));
-
             Person newPerson = new Person { Name = person.Name, City =  selectedCity, PhoneNumber = person.PhoneNumber };            
             _db.People.Add(newPerson);
             _db.SaveChanges();
 
-            _personLanguageRepo.Create(newPerson, selectedLanguage);
+            for (int i = 0; i < person.Languages.Length; i++)
+            {
+                Language selectedLanguage = _languageRepo.Read(person.Languages[i]);
+                _personLanguageRepo.Create(newPerson, selectedLanguage);
+            }
 
             return newPerson;
         }
