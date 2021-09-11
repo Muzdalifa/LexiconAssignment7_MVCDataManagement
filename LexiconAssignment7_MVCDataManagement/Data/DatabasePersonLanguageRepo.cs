@@ -10,9 +10,12 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     public class DatabasePersonLanguageRepo : IPersonLanguageRepo
     {
         private readonly PeopleDbContext _db;
-        public DatabasePersonLanguageRepo(PeopleDbContext peopleDbContext)
+        private readonly ILanguageRepo _languageRepo;
+        //private readonly IPersonLanguageRepo _personLanguageRepo;
+        public DatabasePersonLanguageRepo(PeopleDbContext peopleDbContext, ILanguageRepo languageRepo)
         {
             _db = peopleDbContext;
+            _languageRepo = languageRepo;
         }
         public PersonLanguage Create(Person person, Language language)
         {
@@ -23,9 +26,29 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             return personLanguage;
         }
 
-        public bool Delete(PersonLanguage language)
+        public bool Delete(PersonLanguage personLanguage)
         {
-            throw new NotImplementedException();
+            if(personLanguage != null)
+            {
+                PersonLanguage personLgToDelete = (from personlg in _db.PersonLanguages
+                            where (personlg.LanguageID == personLanguage.LanguageID && personlg.PersonID == personLanguage.PersonID)
+                            select personlg)
+                            .FirstOrDefault();
+                if(personLgToDelete != null)
+                {
+                    _db.PersonLanguages.Remove(personLgToDelete); 
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }            
         }
 
         public List<PersonLanguage> Read()
@@ -44,9 +67,40 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             return query;
         }
 
-        public PersonLanguage Update(PersonLanguage language)
+        public List<PersonLanguage> Update(int[] languages, Person person)
         {
-            throw new NotImplementedException();
+            
+            for (int i = 0; i < languages.Length; i++)
+            {
+                Language selectedLanguage = _languageRepo.Read(languages[i]);
+
+                Create(person, selectedLanguage);
+                _db.PersonLanguages.Add(new PersonLanguage { Language = selectedLanguage, Person = person});
+            }
+
+            _db.SaveChanges();
+
+            return person.PersonLanguages;
+
+
+
+
+
+
+            ////var query = from personlg in _db.PersonLanguages
+            ////            where personlg.PersonID == personLanguage.PersonID
+            ////            select personlg;
+            ////if(query != null)
+            ////{
+            ////    foreach (var item in query)
+            ////    {
+            //        Language language = _languageRepo.Read(personLanguage.LanguageID);                                        
+
+            //        _db.PersonLanguages.Add(new PersonLanguage{ Language = language, Person = personLanguage.Person});
+            //        _db.SaveChanges();
+            ////    }            
+            ////}
+            //return personLanguage;
         }
     }
 }

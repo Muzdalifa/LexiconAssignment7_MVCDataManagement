@@ -49,9 +49,17 @@
             <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
-                <option value="@item.ID" >@item.Name</option>
+                <option value="@item.ID">@item.Name</option>
             }
         </select>
+        <select asp-for="EditPerson.Languages" class="me-4" multiple id="selectLanguage" name="languages">
+            <option value="" selected>Select Languages</option>
+            @foreach (Language item in Model.Languages)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+
         <span asp-validation-for="EditPerson.PhoneNumber"></span>
         <input asp-for="EditPerson.PhoneNumber" id="editPhoneNumber" name="phoneNumber" class="me-4" placeholder="Enter phonenumber" />
         <input type="submit" class="btn btn-secondary" id="edit-btn" value="Save" />

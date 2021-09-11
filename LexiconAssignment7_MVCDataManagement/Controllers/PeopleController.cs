@@ -1,4 +1,5 @@
-﻿using LexiconAssignment7_MVCDataManagement.Models;
+﻿using LexiconAssignment7_MVCDataManagement.Data;
+using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.Services;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +16,14 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         private readonly IPeopleService _peopleService;
         private readonly ICityService _cityService;
         private readonly ILanguageService _languageService;
+        private readonly IPersonLanguageRepo _personLanguageRepo;
 
-        public PeopleController(IPeopleService peopleService, ICityService cityService, ILanguageService languageService)
+        public PeopleController(IPeopleService peopleService, ICityService cityService, ILanguageService languageService, IPersonLanguageRepo personLanguageRepo)
         {
             _peopleService = peopleService;
             _cityService = cityService;
             _languageService = languageService;
+            _personLanguageRepo = personLanguageRepo;
         }
 
         public IActionResult Index(PeopleViewModel peopleViewModel)
@@ -47,10 +50,20 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, string name, string city, string phoneNumber)
+        public IActionResult Edit(int id, string name, string city, string phoneNumber, int[] languages)
         {
             City selectedCity = _cityService.FindBy(Convert.ToInt32(city));
-            Person person = new Person { ID = id, Name = name, City = selectedCity, PhoneNumber = phoneNumber };
+
+            Person person = _peopleService.FindBy(id);
+            person.Name = name;
+            person.City = selectedCity;
+            person.PhoneNumber = phoneNumber;
+            person.PersonLanguages.Clear();
+            for (int i = 0; i < languages.Length; i++)
+            {
+                Language lg = _languageService.FindBy(languages[i]);
+                person.PersonLanguages.Add(new PersonLanguage { PersonID = id, Person = person, LanguageID = lg.ID, Language = lg });
+            }
 
             if (ModelState.IsValid)
             {

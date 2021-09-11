@@ -11,7 +11,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public PersonLanguage Create(Person person, Language language);
         public List<PersonLanguage> Read();
         public PersonLanguage Read(int id);
-        public PersonLanguage Update(PersonLanguage language);
-        public bool Delete(PersonLanguage language);
+        public List<PersonLanguage> Update(int[] languages, Person person);
+        public bool Delete(PersonLanguage personLanguage);
     }
 }
