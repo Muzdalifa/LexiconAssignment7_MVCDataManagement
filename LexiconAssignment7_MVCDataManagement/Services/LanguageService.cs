@@ -57,6 +57,11 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             return _languageRepo.Read(id);
         }
 
+        public Language FindBy(string search)
+        {
+            return _languageRepo.FindBy(search);
+        }
+
         public bool Remove(int id)
         {
             Language language = FindBy(id);

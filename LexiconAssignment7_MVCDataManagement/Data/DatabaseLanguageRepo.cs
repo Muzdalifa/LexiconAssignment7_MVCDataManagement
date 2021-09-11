@@ -49,6 +49,14 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             }
         }
 
+        public Language FindBy(string search)
+        {
+            var serchedLanguage = (from language in _db.Languages
+                         select language)
+                         .FirstOrDefault();
+            return serchedLanguage;
+        }
+
         public List<Language> Read()
         {
             var query = (from language in _db.Languages

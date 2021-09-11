@@ -4,23 +4,19 @@
     <div class="col">@Model.ID</div>
     <div class="col">@Model.Name</div>
     <div class="col">@Model.City.Name</div>
-    @*<div class="col">@Model.PersonLanguages</div>*@
-<div class="col display-language">
-    @foreach (var item in Model.PersonLanguages)
-    {
-        if (item != null)
+    <div class="col display-language">
+        @foreach (var item in Model.PersonLanguages)
         {
-            @item.Language.Name
-            if (Model.PersonLanguages.Count > 1) 
+            if (item != null)
             {
-                <span class="put-komma me-1">,</span>
-  
+                @item.Language.Name
+                if (Model.PersonLanguages.Count > 1) 
+                {
+                    <span class="put-komma me-1">,</span>  
+                }
             }
-
         }
-    }
-</div>
-
+    </div>
     <div class="col">@Model.PhoneNumber</div>
     <div class="col"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>
     <div class="col"><a href="#edit-div" id="edit-link" onclick="showDiv({id:'@Model.ID', name:'@Model.Name', city:'@Model.City.Name', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>

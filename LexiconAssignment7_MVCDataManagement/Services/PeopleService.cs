@@ -2,6 +2,8 @@
 using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LexiconAssignment7_MVCDataManagement.Services
 {
@@ -13,11 +15,13 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         private readonly IPeopleRepo _peopleRepo;
         private readonly ICityRepo _cityRepo;
         private readonly ILanguageRepo _languageRepo;
-        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ILanguageRepo languageRepo)
+        private readonly IPersonLanguageRepo _personLanguageRepo;
+        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ILanguageRepo languageRepo, IPersonLanguageRepo personLanguageRepo)
         {
             _peopleRepo = peopleRepo;
             _cityRepo = cityRepo;
             _languageRepo = languageRepo;
+            _personLanguageRepo = personLanguageRepo;
         }
 
         /// <summary>
@@ -70,16 +74,22 @@ namespace LexiconAssignment7_MVCDataManagement.Services
 
 
         /// <summary>
-        /// Find person by Id 
+        /// Find person by <paramref name="PeopleViewModel"/>
         /// </summary>
         /// <param name="search"></param>
         /// <returns>Object of type <paramref name="PeopleViewModel"/></returns>
         public PeopleViewModel FindBy(PeopleViewModel search)
         {
-            //search.People = _peopleRepo.Read();
+
+            List<Language> searchedLanguage  = (from lang in _languageRepo.Read()
+                                                where lang.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
+                                                select lang)
+                                                .ToList<Language>();
+
             search.People = _peopleRepo.Read().FindAll(
                 person => person.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
                 || person.City.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
+                || person.PersonLanguages.Exists(pl => searchedLanguage.Exists(sl => sl.ID == pl.LanguageID))
                 || person.PhoneNumber.Contains(search.Search)
             );
 

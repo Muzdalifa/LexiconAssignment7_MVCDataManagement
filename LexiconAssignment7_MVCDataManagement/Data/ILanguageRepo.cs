@@ -14,5 +14,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public Language Read(int id);
         public Language Update(Language language);
         public bool Delete(Language language);
+        public Language FindBy(string search);
     }
 }
