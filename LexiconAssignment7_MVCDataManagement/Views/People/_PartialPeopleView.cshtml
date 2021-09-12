@@ -1,10 +1,10 @@
 ﻿@model Person
 
 <div class="row border border-2 py-2">
-    <div class="col">@Model.ID</div>
-    <div class="col">@Model.Name</div>
-    <div class="col">@Model.City.Name</div>
-    <div class="col display-language">
+    <div class="col-md-1">@Model.ID</div>
+    <div class="col-md-1">@Model.Name</div>
+    <div class="col-md-2">@Model.City.Name</div>
+    <div class="col-md-4 display-language">
         @foreach (var item in Model.PersonLanguages)
         {
             if (item != null)
@@ -17,7 +17,7 @@
             }
         }
     </div>
-    <div class="col">@Model.PhoneNumber</div>
-    <div class="col"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>
-    <div class="col"><a href="#edit-div" id="edit-link" onclick="showDiv({id:'@Model.ID', name:'@Model.Name', city:'@Model.City.Name', laguages:'@Model.PersonLanguages', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
+    <div class="col-md-2">@Model.PhoneNumber</div>
+    <div class="col-md-1"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>
+    <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="showDiv({id:'@Model.ID', name:'@Model.Name', city:'@Model.City.Name', laguages:'@Model.PersonLanguages', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
 </div>
