@@ -2,8 +2,21 @@
 @model Person
 
 <div class="row border border-2 py-2">
-    <div class="col">@Model.ID</div>
-    <div class="col">@Model.Name</div>
-    <div class="col">@Model.City.Name</div>
-    <div class="col">@Model.PhoneNumber</div>
+    <div class="col-md-1">@Model.ID</div>
+    <div class="col-md-2">@Model.Name</div>
+    <div class="col-md-2">@Model.City.Name</div>
+    <div class="col-md-5 display-language">
+        @foreach (var item in Model.PersonLanguages)
+        {
+            if (item != null)
+            {
+                @item.Language.Name
+                if (Model.PersonLanguages.Count > 1)
+                {
+                    <span class="put-komma me-1">,</span>
+                }
+            }
+        }
+    </div>
+    <div class="col-md-2">@Model.PhoneNumber</div>
 </div>

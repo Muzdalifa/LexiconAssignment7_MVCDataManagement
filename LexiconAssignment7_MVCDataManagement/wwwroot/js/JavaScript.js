@@ -5,14 +5,25 @@
     document.getElementById("phone").value = "";
 }
 
-//$("#reset").on("click", function () {
-//    $('#addCity').prop('selectedIndex', 0);
+//$("#btn-add").on("click", function () {
+//    Clear();
 //});
 
 function showDiv(p) {
-    console.log(p.city);
+
+    // clear select
+    for (const option of document.querySelectorAll("option.edit[selected]")) {
+        option.removeAttribute('selected');
+    }
+    // select
+    for (const element of document.querySelectorAll("span.person-id-" + p.id + ".language")) {
+        const option = document.querySelector("option#" + element.innerHTML)
+        option.setAttribute('selected', 'selected');
+    }
+
     document.getElementById("editID").value = p.id;
     document.getElementById("editName").value = p.name;
+    document.getElementById("editPhoneNumber").value = p.phoneNumber;
 
     //change the value of drop down list
     var cityList = document.getElementById("selectCity");
@@ -22,14 +33,6 @@ function showDiv(p) {
             break;
         }
     }
-    //document.getElementById("selectLanguage").value = p.language;
-    var languageList = document.getElementById("selectLanguage");
-    for (var i = 1; i < languageList.options.length; i++) {
-        if (languageList.options[i].innerHTML === p.language) {
-            languageList.selectedIndex = i;
-        }
-    }
-    document.getElementById("editPhoneNumber").value = p.phoneNumber;
 }
 
 
@@ -84,3 +87,8 @@ function personDelete() {
         }
     })
 }
+
+tail.select("#addCity", {
+});
+tail.select("#selectLanguage", {
+});

@@ -59,6 +59,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             person.City = selectedCity;
             person.PhoneNumber = phoneNumber;
             person.PersonLanguages.Clear();
+
             for (int i = 0; i < languages.Length; i++)
             {
                 Language lg = _languageService.FindBy(languages[i]);
