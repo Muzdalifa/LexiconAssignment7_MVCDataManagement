@@ -1,4 +1,5 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Data
 {
-    public class PeopleDbContext:DbContext
+    public class PeopleDbContext:IdentityDbContext
     {
         public PeopleDbContext(DbContextOptions<PeopleDbContext> options):base(options)
         {
