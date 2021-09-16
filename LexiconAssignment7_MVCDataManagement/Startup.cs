@@ -4,6 +4,7 @@ using LexiconAssignment7_MVCDataManagement.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.Configuration;
@@ -44,10 +45,15 @@ namespace LexiconAssignment7_MVCDataManagement
             services.AddScoped<IPersonLanguageRepo, DatabasePersonLanguageRepo>();
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<PeopleDbContext>();
 
             services.AddDbContext<PeopleDbContext>(options=> {
                 options.UseSqlServer(Configuration.GetConnectionString("PeopleDb"));
-            });
+            });            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +67,8 @@ namespace LexiconAssignment7_MVCDataManagement
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -70,6 +78,7 @@ namespace LexiconAssignment7_MVCDataManagement
             endpoints.MapControllerRoute(
                 name: "custom",
                 pattern: "{controller=ajax}/{action=Index}/{id?}");
+            endpoints.MapRazorPages();
             });
         }
     }
