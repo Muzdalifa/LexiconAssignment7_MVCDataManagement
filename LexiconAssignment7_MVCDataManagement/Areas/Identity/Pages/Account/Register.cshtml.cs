@@ -69,6 +69,9 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Display(Name = "Administarator")]
+            public bool IsAdministarator { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -79,6 +82,7 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -93,8 +97,8 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,
-                    FirstName = Input.FirstName, LastName = Input.LastName, DateOfBirth = Input.DateOfBirth};
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName,
+                    LastName = Input.LastName, DateOfBirth = Input.DateOfBirth, IsAdministarator= Input.IsAdministarator};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

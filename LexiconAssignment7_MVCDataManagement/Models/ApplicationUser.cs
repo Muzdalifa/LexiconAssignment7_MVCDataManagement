@@ -22,6 +22,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         [Required(ErrorMessage = "Please fill in your date of birth")]
         [DataType(DataType.DateTime)]
         public DateTime DateOfBirth { get; set; }
-
+        
+        public bool IsAdministarator { get; set; }
     }
 }
