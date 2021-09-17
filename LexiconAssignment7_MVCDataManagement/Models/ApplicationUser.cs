@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Models
 {
-    public class ApplicationUser:IdentityUser
+    public class ApplicationUser: IdentityUser
     {
         [Required(ErrorMessage = "You need to fill out name field!")]
         [RegularExpression(@"[A-zöåäÅÖÄ]*", ErrorMessage = "Use only alphabets.")]
