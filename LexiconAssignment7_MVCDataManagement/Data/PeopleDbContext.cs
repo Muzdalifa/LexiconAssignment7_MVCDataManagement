@@ -41,5 +41,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<PersonLanguage> PersonLanguages { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
     }
 }

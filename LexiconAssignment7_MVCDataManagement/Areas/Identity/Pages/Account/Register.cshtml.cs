@@ -45,6 +45,24 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required(ErrorMessage = "You need to fill out name field!")]
+            [RegularExpression(@"[A-zöåäÅÖÄ]*", ErrorMessage = "Use only alphabets.")]
+            [MinLength(2), MaxLength(50, ErrorMessage = "The name must have minimum 2 character and maximum 50")]
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "You need to fill out name field!")]
+            [RegularExpression(@"[A-zöåäÅÖÄ]*", ErrorMessage = "Use only alphabets.")]
+            [MinLength(2), MaxLength(50, ErrorMessage ="The name must have minimum 2 character and maximum 50")]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
+
+            [Required(ErrorMessage = "Please fill in your date of birth")]
+            [DataType(DataType.DateTime)]
+            [Display(Name = "Date of birth")]
+            public DateTime DateOfBirth { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]

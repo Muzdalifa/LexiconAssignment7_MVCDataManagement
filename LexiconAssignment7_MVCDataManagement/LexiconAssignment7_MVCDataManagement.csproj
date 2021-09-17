@@ -13,6 +13,10 @@
     <Compile Remove="Migrations\20210906131305_RemovePopulationColumn.Designer.cs" />
     <Compile Remove="Migrations\20210906161628_AddCountryAndCityTable.cs" />
     <Compile Remove="Migrations\20210906161628_AddCountryAndCityTable.Designer.cs" />
+    <Compile Remove="Migrations\20210916184006_UpdateTableUser.cs" />
+    <Compile Remove="Migrations\20210916184006_UpdateTableUser.Designer.cs" />
+    <Compile Remove="Migrations\20210917054725_AddTableUser.cs" />
+    <Compile Remove="Migrations\20210917054725_AddTableUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
