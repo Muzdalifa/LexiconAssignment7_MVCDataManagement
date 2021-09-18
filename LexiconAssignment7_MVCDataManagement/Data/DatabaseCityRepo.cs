@@ -1,5 +1,6 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,16 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     public class DatabaseCityRepo:ICityRepo
     {
         private readonly PeopleDbContext _db;
-        public DatabaseCityRepo(PeopleDbContext peopleDbContext)
+        private readonly ICountryRepo _country;
+        public DatabaseCityRepo(PeopleDbContext peopleDbContext, ICountryRepo country)
         {
             _db = peopleDbContext;
+            _country = country;
         }
         public City Create(CreateCityViewModel city)
         {
-            City newCity = new City { Name = city.Name};
+            Country countryToAdd = _country.Read(city.CountryId);
+            City newCity = new City { Name = city.Name, Country = countryToAdd};
             _db.Cities.Add(newCity);
             _db.SaveChanges();
 
@@ -50,8 +54,8 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public List<City> Read()
         {
-            var query = from city in _db.Cities
-                        select city;
+            var query = (from city in _db.Cities
+                        select city).Include(c => c.Country);
 
             return query.ToList<City>();
         }

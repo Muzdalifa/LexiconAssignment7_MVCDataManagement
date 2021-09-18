@@ -11,7 +11,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     {
         public City Create(CreateCityViewModel city);
         public List<City> Read();
-
         public City Read(int id);
         public City Update(City city);
         public bool Delete(City country);

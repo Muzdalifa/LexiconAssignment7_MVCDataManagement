@@ -1,0 +1,48 @@
+﻿
+@model CityViewModel
+
+<h2>Add City</h2>
+<form asp-controller="City" asp-action="Create" method="post" id="create-form" class="p-0">
+    <span asp-validation-for="City.Name" class="text-danger"></span>
+    <input asp-for="City.Name" id="name" placeholder="Enter city name" class="me-4" />
+    <span asp-validation-for="City.Country.ID" class="text-danger"></span>
+    <input asp-for="City.Country.ID" id="country" placeholder="Enter country ID" class="me-4" />
+    <input type="submit" class="btn btn-secondary me-4" value="Add">
+    <input type="button" class="btn btn-secondary me-4" value="Reset" id="reset" onclick="Clear()">
+</form>
+
+<div class="row p-3" id="edit-div">
+    <form asp-controller="city" asp-action="Edit" method="post" id="edit-form" class="p-0">
+        <label class="me-4">Edit city </label>
+        <input id="editID" name="id" type="hidden" />
+        <span asp-validation-for="EditCity.Name" class="text-danger"></span>
+        <input asp-for="EditCity.Name" id="editName" name="name" class="me-4" placeholder="Edit city name" />
+        <span asp-validation-for="EditCity.Country.Name" class="text-danger"></span>
+        <input asp-for="EditCity.Country.Name" id="editName" name="country" class="me-4" placeholder="Edit conutry name" />
+        <input type="submit" class="btn btn-secondary" id="edit-btn" value="Save" />
+    </form>
+</div>
+
+<h2>Available cities</h2>
+<div class="row py-3">
+    <div class="col">
+        <div class="row bg-gradient bg-opacity-75 bg-secondary header-table">
+            <div class="col-md-1">ID</div>
+            <div class="col-md-1">Name</div>
+            <div class="col-md-1">Country</div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+        </div>
+
+        @foreach (City city in Model.Cities)
+        {
+    <div class="row border border-2 py-2" city>
+        <div class="col-md-1">@city.ID</div>
+        <div class="col-md-1">@city.Name</div>
+        <div class="col-md-1">@city.Country.ID</div>
+        <div class="col-md-1"><a asp-action="Delete" asp-route-id="@city.ID">Delete</a></div>
+        <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="editLocation({ id: '@city.ID', name: '@city.Name', country = '@city.Country.ID'})">Edit</a></div>
+    </div>
+        }
+    </div>
+</div>

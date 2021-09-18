@@ -42,9 +42,10 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
 
         [HttpPost]
-        public IActionResult Edit(int id, string city) //TODO: change to string to objcet City and test
+        public IActionResult Edit(int id, string name, int countryId) 
         {
-            City editedCity = new City { Name = city, };
+            
+            City editedCity = new City { ID = id, Name = name, Country = {ID = countryId } };
             if (ModelState.IsValid)
             {
                 _cityService.Edit(id, editedCity);

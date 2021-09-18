@@ -11,7 +11,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
     {
         public Country Create(CreateCountryViewModel country);
         public List<Country> Read();
-
         public Country Read(int id);
         public Country Update(Country country);
         public bool Delete(Country country);

@@ -85,11 +85,6 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             return _countryRepo.Read(id);
         }
 
-        public CountryViewModel FindBy(PeopleViewModel search)
-        {
-            throw new NotImplementedException();
-        }
-
 
         /// <summary>
         /// Delete Country from a <paramref name="Country"/> list

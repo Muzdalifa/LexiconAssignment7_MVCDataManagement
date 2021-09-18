@@ -11,6 +11,8 @@ namespace LexiconAssignment7_MVCDataManagement.ViewModels
         public CreateCityViewModel City { get; set; }
 
         public List<City> Cities = new List<City>();
+
+        public CreateCityViewModel EditCity { get; set; }
         public string Search { get; set; }
     }
 }

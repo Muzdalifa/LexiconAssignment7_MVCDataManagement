@@ -35,6 +35,12 @@ function showDiv(p) {
     }
 }
 
+//Edit country or city
+function editLocation(p) {
+    document.getElementById("editID").value = p.id;
+    document.getElementById("editName").value = p.name;
+}
+
 
 //for ajax controller
 function personShow() {

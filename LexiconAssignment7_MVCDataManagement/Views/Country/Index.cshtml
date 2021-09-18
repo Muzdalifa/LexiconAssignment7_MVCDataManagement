@@ -1,0 +1,41 @@
+﻿@model CountryViewModel
+
+<h2>Add country</h2>
+<form asp-controller="Country" asp-action="Create" method="post" id="create-form" class="p-0">
+    <span asp-validation-for="Country.Name" class="text-danger"></span>
+    <input asp-for="Country.Name" id="name" placeholder="Enter name" class="me-4" />
+    <input type="submit" class="btn btn-secondary me-4" value="Add">
+    <input type="button" class="btn btn-secondary me-4" value="Reset" id="reset" onclick="Clear()">
+</form>
+
+<div class="row p-3" id="edit-div">
+    <form asp-controller="Country" asp-action="Edit" method="post" id="edit-form" class="p-0">
+        <label class="me-4">Edit country </label>
+        <input id="editID" name="id" type="hidden" />
+        <span asp-validation-for="EditCountry.Name" class="text-danger"></span>
+        <input asp-for="EditCountry.Name" id="editName" name="name" class="me-4" placeholder="Enter name" />
+        <input type="submit" class="btn btn-secondary" id="edit-btn" value="Save" />
+    </form>
+</div>
+
+<h2>Available countries</h2>
+<div class="row py-3">
+    <div class="col">
+        <div class="row bg-gradient bg-opacity-75 bg-secondary header-table">
+            <div class="col-md-1">ID</div>
+            <div class="col-md-1">Name</div>
+            <div class="col-md-1 heading"></div>
+            <div class="col-md-1"></div>
+        </div>
+
+        @foreach (Country country in Model.Countries)
+        {
+            <div class="row border border-2 py-2">
+                <div class="col-md-1">@country.ID</div>
+                <div class="col-md-1">@country.Name</div>
+                <div class="col-md-1"><a asp-action="Delete" asp-route-id="@country.ID">Delete</a></div>
+                <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="editLocation({ id: '@country.ID', name: '@country.Name'})">Edit</a></div>
+            </div>
+        }      
+    </div>
+</div>

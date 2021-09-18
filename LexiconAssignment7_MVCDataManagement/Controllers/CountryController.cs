@@ -41,9 +41,9 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, string country)
+        public IActionResult Edit(int id, string name)
         {
-            Country editedCountry = new Country { ID = id, Name = country, };
+            Country editedCountry = new Country { ID = id, Name = name };
             if (ModelState.IsValid)
             {
                 _countryService.Edit(id, editedCountry);
