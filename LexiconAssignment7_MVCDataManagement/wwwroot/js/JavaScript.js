@@ -51,14 +51,17 @@ function personShow() {
         success: function (output) {
             //console.log(output);
             document.getElementById("showResult").innerHTML = output;
-            
+
+        },
+        error: function (output) {
+            alert(output.status + " :" + output.responseText);
         }
     })
 }
 
 function personDetails() {
     var id = document.getElementById("personId").value;
-   /* console.log(!id);*/
+    /* console.log(!id);*/
     if (id) {
         $.ajax({
             type: "GET",
@@ -66,6 +69,9 @@ function personDetails() {
             success: function (output) {
                 document.getElementById("showResult").innerHTML = output;
 
+            },
+            error: function (output) {
+                alert(output.status + " :" + output.responseText);
             }
         })
     }
@@ -76,6 +82,9 @@ function personDetails() {
             success: function (output) {
                 document.getElementById("showResult").innerHTML = output;
 
+            },
+            error: function (output) {
+                alert(output.status + " :" + output.responseText);
             }
         })
     }
@@ -90,6 +99,9 @@ function personDelete() {
         success: function (output) {
             console.log(output);
             document.getElementById("showResult").innerHTML = output;
+        },
+        error: function (output) {
+            console.log(output.status + " :" + output.responseText);
         }
     })
 }

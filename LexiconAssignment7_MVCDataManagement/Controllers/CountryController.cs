@@ -1,6 +1,7 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.Services;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
         private readonly ICountryService _countryService;

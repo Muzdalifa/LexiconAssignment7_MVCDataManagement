@@ -24,17 +24,20 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -55,7 +58,7 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
 
             [Required(ErrorMessage = "You need to fill out name field!")]
             [RegularExpression(@"[A-zöåäÅÖÄ]*", ErrorMessage = "Use only alphabets.")]
-            [MinLength(2), MaxLength(50, ErrorMessage ="The name must have minimum 2 character and maximum 50")]
+            [MinLength(2), MaxLength(50, ErrorMessage = "The name must have minimum 2 character and maximum 50")]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
@@ -97,11 +100,25 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName,
-                    LastName = Input.LastName, DateOfBirth = Input.DateOfBirth, IsAdministarator= Input.IsAdministarator};
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    DateOfBirth = Input.DateOfBirth,
+                    IsAdministarator = Input.IsAdministarator
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
+                    if (user.Email.EndsWith(".admin@shewt.com"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

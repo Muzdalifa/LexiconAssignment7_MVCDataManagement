@@ -1,6 +1,7 @@
 ﻿using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.Services;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         private readonly ICityService _cityService;
@@ -20,18 +22,18 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult Index(CityViewModel cityViewModel)
         {
-            if(!string.IsNullOrEmpty(cityViewModel.Search))
+            if (!string.IsNullOrEmpty(cityViewModel.Search))
             {
                 return View(_cityService.FindBy(cityViewModel));
             }
             else
             {
                 return View(_cityService.All());
-            }            
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(CreateCityViewModel city) 
+        public IActionResult Create(CreateCityViewModel city)
         {
             if (ModelState.IsValid)
             {
@@ -42,10 +44,10 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
 
         [HttpPost]
-        public IActionResult Edit(int id, string name, int countryId) 
+        public IActionResult Edit(int id, string name, int countryId)
         {
-            
-            City editedCity = new City { ID = id, Name = name, Country = {ID = countryId } };
+
+            City editedCity = new City { ID = id, Name = name, Country = { ID = countryId } };
             if (ModelState.IsValid)
             {
                 _cityService.Edit(id, editedCity);

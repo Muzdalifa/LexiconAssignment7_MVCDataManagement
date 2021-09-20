@@ -2,6 +2,7 @@
 using LexiconAssignment7_MVCDataManagement.Models;
 using LexiconAssignment7_MVCDataManagement.Services;
 using LexiconAssignment7_MVCDataManagement.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace LexiconAssignment7_MVCDataManagement.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
         private readonly IPeopleService _peopleService;
@@ -25,7 +27,12 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             _languageService = languageService;
             _personLanguageRepo = personLanguageRepo;
         }
+        [AllowAnonymous]
+        public IActionResult Start(PeopleViewModel peopleViewModel)
+        {
+            return View("Start");
 
+        }
         public IActionResult Index(PeopleViewModel peopleViewModel)
         {
             if (!string.IsNullOrEmpty(peopleViewModel.Search))
@@ -34,8 +41,8 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             }
             else
             {
-                return View( _peopleService.All());
-            }          
+                return View(_peopleService.All());
+            }
         }
 
 
@@ -44,9 +51,9 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                _peopleService.Add(person);             
+                _peopleService.Add(person);
             }
-                return View("Index",_peopleService.All());          
+            return View("Index", _peopleService.All());
         }
 
         [HttpPost]
@@ -78,7 +85,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         public IActionResult Delete(int id)
         {
             _peopleService.Remove(id);
-            
+
             return View("Index", _peopleService.All());
         }
 

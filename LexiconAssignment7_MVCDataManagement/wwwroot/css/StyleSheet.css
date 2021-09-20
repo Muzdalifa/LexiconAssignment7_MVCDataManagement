@@ -70,3 +70,7 @@ select {
 span.put-komma.me-1:last-child { 
 display:none;
 }
+
+.login-img {
+    background-image: url("../image/backgr.jpg")
+}

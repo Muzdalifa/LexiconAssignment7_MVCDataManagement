@@ -15,38 +15,44 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light p-5">
-        <a class="navbar-brand" href="#">MVC Data Management</a>
+        <a class="navbar-brand" asp-controller="People" asp-action="Index">MVC Data Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item active">
+                @if(User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link active" asp-controller="People" asp-action="Index"> People's data Assignment<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " asp-controller="Ajax" asp-action="Index"> Ajax Assignment</a>
+                    </li>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link " asp-controller="Country" asp-action="Index"> Manage Country</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " asp-controller="City" asp-action="Index"> Manage City</a>
+                    </li>
+                }
 
-                    <a class="nav-link active" asp-controller="People" asp-action="Index"> People's data Assignment<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " asp-controller="Ajax" asp-action="Index"> Ajax Assignment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " asp-controller="Country" asp-action="Index"> Manage Country</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " asp-controller="City" asp-action="Index"> Manage City</a>
-                </li>
             </ul>
             <partial name="_LoginPartial">
         </div>
     </nav>
-    <div class="row container p-5 py-3">
+    <div class="row container py-3">
         @RenderBody()
         @RenderSection("scripts", required: false)
     </div>
     <script src="~/js/JavaScript.js"></script>
     @*<script src="tail.select-full.min.js"></script>*@
     @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
 
 </body>
 </html>

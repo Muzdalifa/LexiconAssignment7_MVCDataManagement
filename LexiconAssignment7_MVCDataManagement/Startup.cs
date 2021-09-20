@@ -33,7 +33,7 @@ namespace LexiconAssignment7_MVCDataManagement
             services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();
             services.AddScoped<IPeopleService, PeopleService>();
 
-            services.AddScoped<ICityRepo,DatabaseCityRepo>();
+            services.AddScoped<ICityRepo, DatabaseCityRepo>();
             services.AddScoped<ICityService, CityService>();
 
             services.AddScoped<ICountryRepo, DatabaseCountryRepo>();
@@ -51,9 +51,9 @@ namespace LexiconAssignment7_MVCDataManagement
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<PeopleDbContext>();
 
-            services.AddDbContext<PeopleDbContext>(options=> {
+            services.AddDbContext<PeopleDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("PeopleDb"));
-            });            
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,13 +72,13 @@ namespace LexiconAssignment7_MVCDataManagement
 
             app.UseEndpoints(endpoints =>
             {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=People}/{action=Index}/{id?}");
-            endpoints.MapControllerRoute(
-                name: "custom",
-                pattern: "{controller=ajax}/{action=Index}/{id?}");
-            endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=People}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "custom",
+                    pattern: "{controller=ajax}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
