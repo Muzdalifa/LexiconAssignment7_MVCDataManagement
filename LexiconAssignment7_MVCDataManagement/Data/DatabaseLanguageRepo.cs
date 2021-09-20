@@ -53,6 +53,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         {
             var serchedLanguage = (from language in _db.Languages
                          select language)
+                         .Include(c => c.PersonLanguages)
                          .FirstOrDefault();
             return serchedLanguage;
         }

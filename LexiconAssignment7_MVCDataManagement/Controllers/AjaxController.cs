@@ -1,4 +1,5 @@
-﻿using LexiconAssignment7_MVCDataManagement.Services;
+﻿using LexiconAssignment7_MVCDataManagement.Models;
+using LexiconAssignment7_MVCDataManagement.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +13,11 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
     public class AjaxController : Controller
     {
         private readonly IPeopleService _peopleService;
-        public AjaxController(IPeopleService peopleService)
+        private readonly ILanguageService _languageService;
+        public AjaxController(IPeopleService peopleService, ILanguageService languageService)
         {
             _peopleService = peopleService;
+            _languageService = languageService;
         }
         public IActionResult Index()
         {
@@ -28,14 +31,22 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
         public IActionResult Details(int id)
         {
-            if (_peopleService.FindBy(id) != null)
+            Person person = _peopleService.FindBy(id);
+            if ( person != null)
             {
-                return PartialView("_PartialDetails", _peopleService.FindBy(id));
+                //fill language name
+                PersonLanguage[] personLanguages = person.PersonLanguages.ToArray();
+                for (int i = 0; i < personLanguages.Length; i++)
+                {
+                    Language lg = _languageService.FindBy(personLanguages[i].LanguageID);
+                    //person.PersonLanguages.Add(new PersonLanguage { PersonID = id, Person = person, LanguageID = lg.ID, Language = lg });
+                    person.PersonLanguages[i].Language = lg;
+                }
+
+                return PartialView("_PartialDetails", person);
             }
             else
             {
-                //ViewBag.Message = "Person was not found";
-                //return PartialView("_PartialDelete", ViewBag.Message);
                 return RedirectToAction("Error");
             }
         }

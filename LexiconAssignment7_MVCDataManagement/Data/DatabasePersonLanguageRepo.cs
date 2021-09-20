@@ -53,8 +53,10 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public List<PersonLanguage> Read()
         {
-            var query = from personLanguage in _db.PersonLanguages
-                        select personLanguage;
+            var query = (from personLanguage in _db.PersonLanguages
+                        select personLanguage)
+                        .Include(c => c.Language)
+                        .Include(c => c.Person);
 
             return query.ToList<PersonLanguage>();
         }
@@ -63,6 +65,8 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         {
             var query = (from personLanguage in _db.PersonLanguages
                         select personLanguage)
+                        .Include(c => c.Language)
+                        .Include(c => c.Person)
                         .FirstOrDefault(x => x.PersonID == id);
             return query;
         }
