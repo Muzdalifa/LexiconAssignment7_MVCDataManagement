@@ -72,8 +72,6 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Display(Name = "Administarator")]
-            public bool IsAdministarator { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -106,8 +104,7 @@ namespace LexiconAssignment7_MVCDataManagement.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    DateOfBirth = Input.DateOfBirth,
-                    IsAdministarator = Input.IsAdministarator
+                    DateOfBirth = Input.DateOfBirth
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

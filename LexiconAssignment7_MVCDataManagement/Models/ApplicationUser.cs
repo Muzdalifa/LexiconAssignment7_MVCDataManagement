@@ -23,6 +23,5 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         [DataType(DataType.DateTime)]
         public DateTime DateOfBirth { get; set; }
         
-        public bool IsAdministarator { get; set; }
     }
 }
