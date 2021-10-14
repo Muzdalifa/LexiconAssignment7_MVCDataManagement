@@ -29,7 +29,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if(language != null)
             {
                 var languageToDelete = _db.Languages
-                    .Where<Language>(x => x.ID == language.ID)
+                    .Where<Language>(x => x.LanguageId == language.LanguageId)
                     .FirstOrDefault();
 
                 if(languageToDelete != null)
@@ -72,14 +72,14 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             Language languageToRead = (from language in _db.Languages
                         select language)
                         .Include(c => c.PersonLanguages)
-                        .FirstOrDefault(language => language.ID == id);
+                        .FirstOrDefault(language => language.LanguageId == id);
             return languageToRead;
         }
 
         public Language Update(Language language)
         {
             var query = from languageToUpdate in _db.Languages
-                        where languageToUpdate.ID == language.ID
+                        where languageToUpdate.LanguageId == language.LanguageId
                         select languageToUpdate;
 
             foreach (Language data in query)

@@ -43,7 +43,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if (person != null)
             {
                 var personToDelete = _db.People
-                .Where<Person>(x => x.ID == person.ID)
+                .Where<Person>(x => x.PersonId == person.PersonId)
                 .FirstOrDefault();
                 if (personToDelete != null)
                 {
@@ -64,7 +64,6 @@ namespace LexiconAssignment7_MVCDataManagement.Data
 
         public List<Person> Read()
         {
-            //without using linq
             return  _db.People.Include(c => c.City).Include(c=>c.PersonLanguages).ToList<Person>();
         }
 
@@ -74,7 +73,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
                                    select person)
                                    .Include(c => c.City)
                                    .Include(c => c.PersonLanguages)
-                                   .FirstOrDefault(person => person.ID == id);
+                                   .FirstOrDefault(person => person.PersonId == id);
 
             return personToRead;
         }
@@ -82,7 +81,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public Person Update(Person person)
         {
             var query = from personToUpdate in _db.People
-                        where personToUpdate.ID == person.ID
+                        where personToUpdate.PersonId == person.PersonId
                         select personToUpdate;
 
             foreach (Person data in query)

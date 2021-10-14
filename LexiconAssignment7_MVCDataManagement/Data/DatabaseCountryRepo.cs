@@ -28,7 +28,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if (Country != null)
             {
                 var countryToDelete = _db.Countries
-                .Where<Country>(x => x.ID == Country.ID)
+                .Where<Country>(x => x.CountryId == Country.CountryId)
                 .FirstOrDefault();
                 if (countryToDelete != null)
                 {
@@ -60,7 +60,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         {
             Country countryToRead = (from country in _db.Countries
                                   select country)
-                        .FirstOrDefault(country => country.ID == id);
+                        .FirstOrDefault(country => country.CountryId == id);
 
             return countryToRead;
         }
@@ -68,7 +68,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public Country Update(Country country)
         {
             var query = from countryToUpdate in _db.Countries
-                        where countryToUpdate.ID == country.ID
+                        where countryToUpdate.CountryId == country.CountryId
                         select countryToUpdate;
 
             foreach (Country data in query)

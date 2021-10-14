@@ -2,7 +2,7 @@
 
 
 <div class="row border border-2 py-2">
-    <div class="col-md-1">@Model.ID</div>
+    <div class="col-md-1">@Model.PersonId</div>
     <div class="col-md-1">@Model.Name</div>
     <div class="col-md-2">@Model.City.Name</div>
     <div class="col-md-4 display-language">
@@ -10,7 +10,7 @@
         {
             if (item != null)
             {
-                <span class="person-id-@Model.ID language">@item.Language.Name</span>
+                <span class="person-id-@Model.PersonId language">@item.Language.Name</span>
                 if (Model.PersonLanguages.Count > 1)
                 {
                     <span class="put-komma me-1">,</span>  
@@ -19,6 +19,6 @@
         }
     </div>
     <div class="col-md-2">@Model.PhoneNumber</div>
-    <div class="col-md-1"><a asp-action="Delete" asp-route-id="@Model.ID">Delete</a></div>
-    <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="showDiv({ id: '@Model.ID', name: '@Model.Name', city: '@Model.City.Name', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
+    <div class="col-md-1"><a asp-action="Delete" asp-route-id="@Model.PersonId">Delete</a></div>
+    <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="showDiv({ id: '@Model.PersonId', name: '@Model.Name', city: '@Model.City.Name', phoneNumber: '@Model.PhoneNumber'})">Edit</a></div>
 </div>

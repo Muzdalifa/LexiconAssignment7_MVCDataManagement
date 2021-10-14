@@ -14,14 +14,14 @@
             <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
-                <option value="@item.ID">@item.Name</option>
+                <option value="@item.CityId">@item.Name</option>
             }
         </select>
         <select asp-for="Person.Languages" class="multiple-select me-3" data-style="btn-default">
             <option value="" selected>Select Languages</option>
             @foreach (Language item in Model.Languages)
             {
-                <option value="@item.ID">@item.Name</option>
+                <option value="@item.LanguageId">@item.Name</option>
             }
         </select>
         <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
@@ -49,14 +49,14 @@
             <option value="" selected>Select City</option>
             @foreach (City item in Model.Cities)
             {
-                <option value="@item.ID">@item.Name</option>
+                <option value="@item.CityId">@item.Name</option>
             }
         </select>
         <select asp-for="EditPerson.Languages" class="multiple-select me-3" data-style="btn-default" id="selectLanguage" name="languages">
             <option value="" selected disabled>Select Languages</option>
             @foreach (Language item in Model.Languages)
             {
-                <option id="@item.Name" class="edit" value="@item.ID">@item.Name</option>
+                <option id="@item.Name" class="edit" value="@item.LanguageId">@item.Name</option>
             }
         </select>
 

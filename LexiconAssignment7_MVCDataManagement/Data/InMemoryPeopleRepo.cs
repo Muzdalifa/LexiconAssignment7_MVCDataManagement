@@ -35,8 +35,8 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         {
             idCounter++;
 
-            Person newPerson =  new Person { 
-                ID = IdCounter,
+            Person newPerson =  new Person {
+                PersonId = IdCounter,
                 Name = person.Name,
                 City = new City { Name = person.City },
                 PhoneNumber = person.PhoneNumber 
@@ -63,7 +63,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// <returns>Object of type <paramref name="Person"/></returns>
         public Person Read(int id)
         {
-            return People.FirstOrDefault(x => x.ID == id);
+            return People.FirstOrDefault(x => x.PersonId == id);
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace LexiconAssignment7_MVCDataManagement.Models
         /// </summary>
         /// <param name="person"></param>
         ///<exception cref="ArgumentNullException"></exception>
-        /// When <paramref name="person.ID"/> is not found 
+        /// When <paramref name="person.PersonId"/> is not found 
         /// <returns>Object of type <paramref name="Person"/></returns>
         public Person Update(Person person)
         {
-            int index = People.FindIndex(x => x.ID == person.ID);
+            int index = People.FindIndex(x => x.PersonId == person.PersonId);
             if(index != -1)
             {
                 People[index] = person;

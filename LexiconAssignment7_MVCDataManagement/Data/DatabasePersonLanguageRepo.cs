@@ -31,7 +31,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if(personLanguage != null)
             {
                 PersonLanguage personLgToDelete = (from personlg in _db.PersonLanguages
-                            where (personlg.LanguageID == personLanguage.LanguageID && personlg.PersonID == personLanguage.PersonID)
+                            where (personlg.LanguageId == personLanguage.LanguageId && personlg.PersonId == personLanguage.PersonId)
                             select personlg)
                             .FirstOrDefault();
                 if(personLgToDelete != null)
@@ -67,7 +67,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
                         select personLanguage)
                         .Include(c => c.Language)
                         .Include(c => c.Person)
-                        .FirstOrDefault(x => x.PersonID == id);
+                        .FirstOrDefault(x => x.PersonId == id);
             return query;
         }
 

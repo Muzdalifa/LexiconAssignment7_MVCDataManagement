@@ -32,7 +32,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             if (city != null)
             {
                 var cityToDelete = _db.Cities
-                    .Where<City>(x => x.ID == city.ID)
+                    .Where<City>(x => x.CityId == city.CityId)
                     .FirstOrDefault();
 
                 if (cityToDelete != null)
@@ -64,7 +64,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         {
             City cityToRead = (from city in _db.Cities
                                    select city)
-                        .FirstOrDefault(city => city.ID == id);
+                        .FirstOrDefault(city => city.CityId == id);
 
             return cityToRead;
         }
@@ -72,7 +72,7 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public City Update(City city)
         {
             var query = from cityToUpdate in _db.Cities
-                        where cityToUpdate.ID == city.ID
+                        where cityToUpdate.CityId == city.CityId
                         select cityToUpdate;
 
             foreach (City data in query)

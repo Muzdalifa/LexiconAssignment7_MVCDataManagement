@@ -47,7 +47,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         public IActionResult Edit(int id, string name, int countryId)
         {
 
-            City editedCity = new City { ID = id, Name = name, Country = { ID = countryId } };
+            City editedCity = new City { CityId = id, Name = name, Country = { CountryId = countryId } };
             if (ModelState.IsValid)
             {
                 _cityService.Edit(id, editedCity);

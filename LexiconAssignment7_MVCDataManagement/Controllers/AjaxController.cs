@@ -38,7 +38,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
                 PersonLanguage[] personLanguages = person.PersonLanguages.ToArray();
                 for (int i = 0; i < personLanguages.Length; i++)
                 {
-                    Language lg = _languageService.FindBy(personLanguages[i].LanguageID);
+                    Language lg = _languageService.FindBy(personLanguages[i].LanguageId);
                     //person.PersonLanguages.Add(new PersonLanguage { PersonID = id, Person = person, LanguageID = lg.ID, Language = lg });
                     person.PersonLanguages[i].Language = lg;
                 }

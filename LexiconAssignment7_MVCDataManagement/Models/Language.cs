@@ -7,7 +7,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
 {
     public class Language
     {
-        public int ID { get; set; }
+        public int LanguageId { get; set; }
         public string Name { get; set; }
         public List<PersonLanguage> PersonLanguages { get; set; }
     }

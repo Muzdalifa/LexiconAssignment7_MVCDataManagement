@@ -70,7 +70,7 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             for (int i = 0; i < languages.Length; i++)
             {
                 Language lg = _languageService.FindBy(languages[i]);
-                person.PersonLanguages.Add(new PersonLanguage { PersonID = id, Person = person, LanguageID = lg.ID, Language = lg });
+                person.PersonLanguages.Add(new PersonLanguage { PersonId = id, Person = person, LanguageId = lg.LanguageId, Language = lg });
             }
 
             if (ModelState.IsValid)

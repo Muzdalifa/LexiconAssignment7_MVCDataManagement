@@ -14,6 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+//using System.Text.Json.Serialization;
 
 namespace LexiconAssignment7_MVCDataManagement
 {
@@ -54,6 +57,13 @@ namespace LexiconAssignment7_MVCDataManagement
             services.AddDbContext<PeopleDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("PeopleDb"));
             });
+            services.AddControllers();
+            services.AddMvc().AddJsonOptions(o =>
+            {
+                o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                o.JsonSerializerOptions.MaxDepth = 0;
+            });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +79,7 @@ namespace LexiconAssignment7_MVCDataManagement
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -78,6 +88,10 @@ namespace LexiconAssignment7_MVCDataManagement
                 endpoints.MapControllerRoute(
                     name: "custom",
                     pattern: "{controller=ajax}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                   name: "frontEnd",
+                   pattern: "{controller=ReactFrontend}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

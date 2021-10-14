@@ -5,8 +5,8 @@
 <form asp-controller="City" asp-action="Create" method="post" id="create-form" class="p-0">
     <span asp-validation-for="City.Name" class="text-danger"></span>
     <input asp-for="City.Name" id="name" placeholder="Enter city name" class="me-4" />
-    <span asp-validation-for="City.Country.ID" class="text-danger"></span>
-    <input asp-for="City.Country.ID" id="country" placeholder="Enter country ID" class="me-4" />
+    <span asp-validation-for="City.Country.CountryId" class="text-danger"></span>
+    <input asp-for="City.Country.CountryId" id="country" placeholder="Enter country ID" class="me-4" />
     <input type="submit" class="btn btn-secondary me-4" value="Add">
     <input type="button" class="btn btn-secondary me-4" value="Reset" id="reset" onclick="Clear()">
 </form>
@@ -37,11 +37,11 @@
         @foreach (City city in Model.Cities)
         {
     <div class="row border border-2 py-2" city>
-        <div class="col-md-1">@city.ID</div>
+        <div class="col-md-1">@city.CityId</div>
         <div class="col-md-1">@city.Name</div>
-        <div class="col-md-1">@city.Country.ID</div>
-        <div class="col-md-1"><a asp-action="Delete" asp-route-id="@city.ID">Delete</a></div>
-        <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="editLocation({ id: '@city.ID', name: '@city.Name', country = '@city.Country.ID'})">Edit</a></div>
+        <div class="col-md-1">@city.Country.CountryId</div>
+        <div class="col-md-1"><a asp-action="Delete" asp-route-id="@city.CityId">Delete</a></div>
+        <div class="col-md-1"><a href="#edit-div" id="edit-link" onclick="editLocation({ id: '@city.CityId', name: '@city.Name', country = '@city.Country.CountryId'})">Edit</a></div>
     </div>
         }
     </div>

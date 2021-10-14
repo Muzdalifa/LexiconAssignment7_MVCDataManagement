@@ -7,7 +7,7 @@ namespace LexiconAssignment7_MVCDataManagement.Models
 {
     public class Country
     {
-        public int ID { get; set; }
+        public int CountryId { get; set; }
         public string Name { get; set; }
         public List<City> Cities { get; set; }
     }

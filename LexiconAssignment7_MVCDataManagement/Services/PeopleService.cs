@@ -43,8 +43,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             PeopleViewModel peopleViewModel = new PeopleViewModel {
 
                 People = _peopleRepo.Read(),
-                Cities = _cityRepo.Read(),
-                Languages = _languageRepo.Read()
+                //Cities = _cityRepo.Read(),
+                //Languages = _languageRepo.Read()
             };
 
             return peopleViewModel;
@@ -89,7 +89,7 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             search.People = _peopleRepo.Read().FindAll(
                 person => person.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
                 || person.City.Name.Contains(search.Search, System.StringComparison.OrdinalIgnoreCase)
-                || person.PersonLanguages.Exists(pl => searchedLanguage.Exists(sl => sl.ID == pl.LanguageID))
+                || person.PersonLanguages.Exists(pl => searchedLanguage.Exists(sl => sl.LanguageId == pl.LanguageId))
                 || person.PhoneNumber.Contains(search.Search)
             );
 
