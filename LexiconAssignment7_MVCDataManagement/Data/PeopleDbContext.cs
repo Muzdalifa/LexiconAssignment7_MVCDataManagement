@@ -66,6 +66,10 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 4, Name = "Spanish" });
             modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 5, Name = "Arabic" });
             modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 6, Name = "Chinese" });
+
+            //seeding languages
+            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 1, Name = "Muzda", CityId=1, PhoneNumber= "+46700276515"});
+      
         }
     }
 

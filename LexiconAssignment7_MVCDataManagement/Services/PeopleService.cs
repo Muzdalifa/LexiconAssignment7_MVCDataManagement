@@ -43,8 +43,8 @@ namespace LexiconAssignment7_MVCDataManagement.Services
             PeopleViewModel peopleViewModel = new PeopleViewModel {
 
                 People = _peopleRepo.Read(),
-                //Cities = _cityRepo.Read(),
-                //Languages = _languageRepo.Read()
+                Cities = _cityRepo.Read(),
+                Languages = _languageRepo.Read()
             };
 
             return peopleViewModel;
