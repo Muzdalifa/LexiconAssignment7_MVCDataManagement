@@ -14,14 +14,17 @@ namespace LexiconAssignment7_MVCDataManagement.Services
     {
         private readonly IPeopleRepo _peopleRepo;
         private readonly ICityRepo _cityRepo;
+        private readonly ICountryRepo _countryRepo;
         private readonly ILanguageRepo _languageRepo;
         private readonly IPersonLanguageRepo _personLanguageRepo;
-        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ILanguageRepo languageRepo, IPersonLanguageRepo personLanguageRepo)
+        public PeopleService(IPeopleRepo peopleRepo, ICityRepo cityRepo, ICountryRepo countryRepo, ILanguageRepo languageRepo, IPersonLanguageRepo personLanguageRepo)
         {
             _peopleRepo = peopleRepo;
             _cityRepo = cityRepo;
+            _countryRepo = countryRepo;
             _languageRepo = languageRepo;
             _personLanguageRepo = personLanguageRepo;
+
         }
 
         /// <summary>
@@ -40,10 +43,12 @@ namespace LexiconAssignment7_MVCDataManagement.Services
         /// <returns> Object of type <paramref name="PeopleViewModel"/></returns>
         public PeopleViewModel All()
         {
-            PeopleViewModel peopleViewModel = new PeopleViewModel {
+            PeopleViewModel peopleViewModel = new PeopleViewModel
+            {
 
                 People = _peopleRepo.Read(),
                 Cities = _cityRepo.Read(),
+                Countries = _countryRepo.Read(),
                 Languages = _languageRepo.Read()
             };
 

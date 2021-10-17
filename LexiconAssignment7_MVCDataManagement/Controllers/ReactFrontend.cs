@@ -16,48 +16,42 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
     [Route("[controller]")]
     public class ReactFrontend : Controller
     {
-        IPeopleService _peopleService;
-        //private readonly DatabasePeopleRepo _databasePeopleRepo;
-        //private readonly ICityService _cityService;
-        //private readonly ILanguageService _languageService;
-        //private readonly IPersonLanguageRepo _personLanguageRepo;
-        private readonly PeopleDbContext _db;
+        private readonly IPeopleService _peopleService;
+        private readonly ICityRepo _cityRepo;
+        private readonly ICountryRepo _countryRepo;
+        private readonly ILanguageRepo _languageRepo;
+        private readonly IPeopleRepo _peopleRepo;
 
 
-        //public ReactFrontendController(ICityService cityService, ILanguageService languageService,
-        //    IPersonLanguageRepo personLanguageRepo, DatabasePeopleRepo databasePeopleRepo,
-        public ReactFrontend(PeopleDbContext db, IPeopleService peopleService)
+
+        public ReactFrontend(PeopleDbContext db, IPeopleRepo peopleRepo,ICityRepo cityRepo, ICountryRepo countryRepo,ILanguageRepo languageRepo)
         {
-            //_cityService = cityService;
-            //_languageService = languageService;
-            //_personLanguageRepo = personLanguageRepo;
-            //_databasePeopleRepo = databasePeopleRepo;
-            _db = db;
-            _peopleService = peopleService;
+            _peopleRepo = peopleRepo;
+            _cityRepo = cityRepo;
+            _countryRepo = countryRepo;
+            _languageRepo = languageRepo;
+
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(_peopleService.All().People);
+            var result = new { cities = _cityRepo.Read(), countries = _countryRepo.Read(), languages = _languageRepo.Read(), people = _peopleRepo.Read() };
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult<Person> Post(CreatePersonViewModel person)
+        {
+            return (_peopleRepo.Create(person));
         }
 
         [HttpGet("{ReactFrontend}/{id}")]
         public IActionResult Get(int id)
         {
-            //List<Person> people =  _databasePeopleRepo.Read();
-            //Person person = _db.People.FirstOrDefault(x => x.ID == id);
-            //return person;
             return new JsonResult(_peopleService.FindBy(1));
         }
 
-        [HttpPost("{ReactFrontend}")]
-        public ActionResult<Person> Post([FromBody]Person person)
-        {
-            //List<Person> people =  _databasePeopleRepo.Read();
-            _db.People.Add(person);
-            _db.SaveChanges();
-            return Json(person);
-        }
+
     }
 }

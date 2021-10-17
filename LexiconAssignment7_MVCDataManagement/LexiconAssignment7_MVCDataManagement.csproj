@@ -5,23 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210905001450_AddCountryAndCityTable.cs" />
-    <Compile Remove="Migrations\20210905001450_AddCountryAndCityTable.Designer.cs" />
-    <Compile Remove="Migrations\20210905002128_AddCountryAndCityTable.cs" />
-    <Compile Remove="Migrations\20210905002128_AddCountryAndCityTable.Designer.cs" />
-    <Compile Remove="Migrations\20210906131305_RemovePopulationColumn.cs" />
-    <Compile Remove="Migrations\20210906131305_RemovePopulationColumn.Designer.cs" />
-    <Compile Remove="Migrations\20210906161628_AddCountryAndCityTable.cs" />
-    <Compile Remove="Migrations\20210906161628_AddCountryAndCityTable.Designer.cs" />
-    <Compile Remove="Migrations\20210916184006_UpdateTableUser.cs" />
-    <Compile Remove="Migrations\20210916184006_UpdateTableUser.Designer.cs" />
-    <Compile Remove="Migrations\20210917054725_AddTableUser.cs" />
-    <Compile Remove="Migrations\20210917054725_AddTableUser.Designer.cs" />
-    <Compile Remove="Migrations\20210917075642_AddAdministratorColumnInTableUser.cs" />
-    <Compile Remove="Migrations\20210917075642_AddAdministratorColumnInTableUser.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />

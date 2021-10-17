@@ -65,6 +65,12 @@ namespace LexiconAssignment7_MVCDataManagement.Data
         public List<Person> Read()
         {
             return  _db.People.Include(c => c.City).Include(c=>c.PersonLanguages).ToList<Person>();
+            //return _db.People
+            //    .Include(c => c.City)
+            //    .ThenInclude(c => c.Country)
+            //    .Include(c => c.PersonLanguages)
+            //    .ThenInclude(l => l.Language)
+            //    .ToList<Person>();
         }
 
         public Person Read(int id)

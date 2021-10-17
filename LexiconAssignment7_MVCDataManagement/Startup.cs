@@ -63,7 +63,17 @@ namespace LexiconAssignment7_MVCDataManagement
                 o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 o.JsonSerializerOptions.MaxDepth = 0;
             });
-            services.AddCors();
+            //Configure CORS 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("*")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +87,7 @@ namespace LexiconAssignment7_MVCDataManagement
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             

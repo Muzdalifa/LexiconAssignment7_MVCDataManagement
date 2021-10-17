@@ -68,8 +68,17 @@ namespace LexiconAssignment7_MVCDataManagement.Data
             modelBuilder.Entity<Language>().HasData(new Language { LanguageId = 6, Name = "Chinese" });
 
             //seeding languages
-            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 1, Name = "Muzda", CityId=1, PhoneNumber= "+46700276515"});
-      
+            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 1, Name = "Muzda", CityId=1,PhoneNumber = "+46700276515"});
+            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 2, Name = "Rebecca", CityId = 3, PhoneNumber = "+46737765152" });
+            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 3, Name = "Selma", CityId = 4, PhoneNumber = "+23700276515" });
+            modelBuilder.Entity<Person>().HasData(new Person { PersonId = 4, Name = "Åke", CityId = 7, PhoneNumber = "+56737765100" });
+
+            //seeding languages
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { PersonLanguageId = 1, PersonId = 1, LanguageId =1 });
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { PersonLanguageId = 2, PersonId = 2, LanguageId = 2 });
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { PersonLanguageId = 3, PersonId = 4, LanguageId = 3 });
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { PersonLanguageId = 4, PersonId = 3, LanguageId = 3 });
+
         }
     }
 

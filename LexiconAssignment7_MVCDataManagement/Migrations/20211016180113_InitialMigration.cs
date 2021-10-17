@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LexiconAssignment7_MVCDataManagement.Migrations
 {
-    public partial class Initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,26 +54,26 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    CountryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Countries", x => x.ID);
+                    table.PrimaryKey("PK_Countries", x => x.CountryId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Languages",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    LanguageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Languages", x => x.ID);
+                    table.PrimaryKey("PK_Languages", x => x.LanguageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -186,19 +186,19 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 name: "Cities",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    CityId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cities", x => x.ID);
+                    table.PrimaryKey("PK_Cities", x => x.CityId);
                     table.ForeignKey(
                         name: "FK_Cities_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
-                        principalColumn: "ID",
+                        principalColumn: "CountryId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -206,7 +206,7 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    PersonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -214,12 +214,12 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.ID);
+                    table.PrimaryKey("PK_People", x => x.PersonId);
                     table.ForeignKey(
                         name: "FK_People_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "ID",
+                        principalColumn: "CityId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -227,25 +227,86 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 name: "PersonLanguages",
                 columns: table => new
                 {
-                    PersonID = table.Column<int>(type: "int", nullable: false),
-                    LanguageID = table.Column<int>(type: "int", nullable: false),
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    LanguageId = table.Column<int>(type: "int", nullable: false),
+                    PersonLanguageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonLanguages", x => new { x.LanguageID, x.PersonID });
+                    table.PrimaryKey("PK_PersonLanguages", x => new { x.LanguageId, x.PersonId });
                     table.ForeignKey(
-                        name: "FK_PersonLanguages_Languages_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_PersonLanguages_Languages_LanguageId",
+                        column: x => x.LanguageId,
                         principalTable: "Languages",
-                        principalColumn: "ID",
+                        principalColumn: "LanguageId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PersonLanguages_People_PersonID",
-                        column: x => x.PersonID,
+                        name: "FK_PersonLanguages_People_PersonId",
+                        column: x => x.PersonId,
                         principalTable: "People",
-                        principalColumn: "ID",
+                        principalColumn: "PersonId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "CountryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Tanzania" },
+                    { 2, "Sweden" },
+                    { 3, "Kenya" },
+                    { 4, "Uganda" },
+                    { 5, "Germany" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "LanguageId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Swahili" },
+                    { 2, "Swedish" },
+                    { 3, "English" },
+                    { 4, "Spanish" },
+                    { 5, "Arabic" },
+                    { 6, "Chinese" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "CityId", "CountryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Dar es salaam" },
+                    { 2, 1, "Dodoma" },
+                    { 3, 2, "Uppsala" },
+                    { 4, 2, "Stockholm" },
+                    { 5, 3, "Nairobi" },
+                    { 6, 4, "Kampala" },
+                    { 7, 5, "	Munich" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "PersonId", "CityId", "Name", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, 1, "Muzda", "+46700276515" },
+                    { 2, 3, "Rebecca", "+46737765152" },
+                    { 3, 4, "Selma", "+23700276515" },
+                    { 4, 7, "Åke", "+56737765100" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PersonLanguages",
+                columns: new[] { "LanguageId", "PersonId", "PersonLanguageId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 2 },
+                    { 3, 3, 4 },
+                    { 3, 4, 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -298,9 +359,9 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonLanguages_PersonID",
+                name: "IX_PersonLanguages_PersonId",
                 table: "PersonLanguages",
-                column: "PersonID");
+                column: "PersonId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

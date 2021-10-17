@@ -193,6 +193,36 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("People");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            CityId = 1,
+                            Name = "Muzda",
+                            PhoneNumber = "+46700276515"
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            CityId = 3,
+                            Name = "Rebecca",
+                            PhoneNumber = "+46737765152"
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            CityId = 4,
+                            Name = "Selma",
+                            PhoneNumber = "+23700276515"
+                        },
+                        new
+                        {
+                            PersonId = 4,
+                            CityId = 7,
+                            Name = "Åke",
+                            PhoneNumber = "+56737765100"
+                        });
                 });
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.PersonLanguage", b =>
@@ -211,6 +241,32 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("PersonLanguages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            PersonId = 1,
+                            PersonLanguageId = 1
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            PersonId = 2,
+                            PersonLanguageId = 2
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            PersonId = 4,
+                            PersonLanguageId = 3
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            PersonId = 3,
+                            PersonLanguageId = 4
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

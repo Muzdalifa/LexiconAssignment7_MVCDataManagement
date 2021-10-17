@@ -17,6 +17,7 @@
                 <option value="@item.CityId">@item.Name</option>
             }
         </select>
+        @*<partial name="_PartialCityView.cshtml"  model="Model.CityViewModel"/>*@
         <select asp-for="Person.Languages" class="multiple-select me-3" data-style="btn-default">
             <option value="" selected>Select Languages</option>
             @foreach (Language item in Model.Languages)

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LexiconAssignment7_MVCDataManagement.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20211013192034_Initial-migration")]
-    partial class Initialmigration
+    [Migration("20211016180113_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.City", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,16 +34,60 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("CityId");
 
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            CountryId = 1,
+                            Name = "Dar es salaam"
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            CountryId = 1,
+                            Name = "Dodoma"
+                        },
+                        new
+                        {
+                            CityId = 3,
+                            CountryId = 2,
+                            Name = "Uppsala"
+                        },
+                        new
+                        {
+                            CityId = 4,
+                            CountryId = 2,
+                            Name = "Stockholm"
+                        },
+                        new
+                        {
+                            CityId = 5,
+                            CountryId = 3,
+                            Name = "Nairobi"
+                        },
+                        new
+                        {
+                            CityId = 6,
+                            CountryId = 4,
+                            Name = "Kampala"
+                        },
+                        new
+                        {
+                            CityId = 7,
+                            CountryId = 5,
+                            Name = "	Munich"
+                        });
                 });
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.Country", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CountryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -51,14 +95,41 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("CountryId");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryId = 1,
+                            Name = "Tanzania"
+                        },
+                        new
+                        {
+                            CountryId = 2,
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            CountryId = 3,
+                            Name = "Kenya"
+                        },
+                        new
+                        {
+                            CountryId = 4,
+                            Name = "Uganda"
+                        },
+                        new
+                        {
+                            CountryId = 5,
+                            Name = "Germany"
+                        });
                 });
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.Language", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("LanguageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -66,14 +137,46 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            Name = "Swahili"
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            Name = "Swedish"
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            Name = "English"
+                        },
+                        new
+                        {
+                            LanguageId = 4,
+                            Name = "Spanish"
+                        },
+                        new
+                        {
+                            LanguageId = 5,
+                            Name = "Arabic"
+                        },
+                        new
+                        {
+                            LanguageId = 6,
+                            Name = "Chinese"
+                        });
                 });
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.Person", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -87,29 +190,85 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("PersonId");
 
                     b.HasIndex("CityId");
 
                     b.ToTable("People");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            CityId = 1,
+                            Name = "Muzda",
+                            PhoneNumber = "+46700276515"
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            CityId = 3,
+                            Name = "Rebecca",
+                            PhoneNumber = "+46737765152"
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            CityId = 4,
+                            Name = "Selma",
+                            PhoneNumber = "+23700276515"
+                        },
+                        new
+                        {
+                            PersonId = 4,
+                            CityId = 7,
+                            Name = "Åke",
+                            PhoneNumber = "+56737765100"
+                        });
                 });
 
             modelBuilder.Entity("LexiconAssignment7_MVCDataManagement.Models.PersonLanguage", b =>
                 {
-                    b.Property<int>("LanguageID")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PersonID")
+                    b.Property<int>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID")
+                    b.Property<int>("PersonLanguageId")
                         .HasColumnType("int");
 
-                    b.HasKey("LanguageID", "PersonID");
+                    b.HasKey("LanguageId", "PersonId");
 
-                    b.HasIndex("PersonID");
+                    b.HasIndex("PersonId");
 
                     b.ToTable("PersonLanguages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            PersonId = 1,
+                            PersonLanguageId = 1
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            PersonId = 2,
+                            PersonLanguageId = 2
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            PersonId = 4,
+                            PersonLanguageId = 3
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            PersonId = 3,
+                            PersonLanguageId = 4
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -356,13 +515,13 @@ namespace LexiconAssignment7_MVCDataManagement.Migrations
                 {
                     b.HasOne("LexiconAssignment7_MVCDataManagement.Models.Language", "Language")
                         .WithMany("PersonLanguages")
-                        .HasForeignKey("LanguageID")
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LexiconAssignment7_MVCDataManagement.Models.Person", "Person")
                         .WithMany("PersonLanguages")
-                        .HasForeignKey("PersonID")
+                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
