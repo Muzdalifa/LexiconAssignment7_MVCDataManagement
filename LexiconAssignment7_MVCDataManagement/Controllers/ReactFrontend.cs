@@ -24,8 +24,9 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
 
 
 
-        public ReactFrontend(PeopleDbContext db, IPeopleRepo peopleRepo,ICityRepo cityRepo, ICountryRepo countryRepo,ILanguageRepo languageRepo)
+        public ReactFrontend(PeopleDbContext db, IPeopleRepo peopleRepo,ICityRepo cityRepo, ICountryRepo countryRepo,ILanguageRepo languageRepo, IPeopleService peopleService)
         {
+            _peopleService = peopleService;
             _peopleRepo = peopleRepo;
             _cityRepo = cityRepo;
             _countryRepo = countryRepo;
@@ -46,10 +47,17 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             return (_peopleRepo.Create(person));
         }
 
-        [HttpGet("{ReactFrontend}/{id}")]
-        public IActionResult Get(int id)
-        {
-            return new JsonResult(_peopleService.FindBy(1));
+        //[HttpPatch]
+        //public IActionResult Put(Person person)
+        //{
+        //    return new JsonResult(_peopleService.FindBy(1));
+        //}
+
+        [HttpDelete("{id}")]        
+        public IActionResult Delete(int id)
+        { 
+            _peopleService.Remove(id);          
+            return NoContent();
         }
 
 
