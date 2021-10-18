@@ -47,11 +47,30 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             return (_peopleRepo.Create(person));
         }
 
-        //[HttpPatch]
-        //public IActionResult Put(Person person)
-        //{
-        //    return new JsonResult(_peopleService.FindBy(1));
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, CreatePersonViewModel person)
+        {
+            City selectedCity = _cityRepo.Read(Convert.ToInt32(person.City));
+
+            Person personToEdit = _peopleService.FindBy(id);
+            personToEdit.Name = person.Name;
+            personToEdit.City = selectedCity;
+            personToEdit.PhoneNumber = person.PhoneNumber;
+            personToEdit.PersonLanguages.Clear();
+
+            for (int i = 0; i < person.Languages.Length; i++)
+            {
+                Language lg = _languageRepo.Read(person.Languages[i]);
+                personToEdit.PersonLanguages.Add(new PersonLanguage { PersonId = id, Person = personToEdit, LanguageId = lg.LanguageId, Language = lg });
+            }
+
+            if (ModelState.IsValid)
+            {
+                _peopleService.Edit(id, personToEdit);
+            }
+
+            return new JsonResult(_peopleRepo.Read());
+        }
 
         [HttpDelete("{id}")]        
         public IActionResult Delete(int id)
