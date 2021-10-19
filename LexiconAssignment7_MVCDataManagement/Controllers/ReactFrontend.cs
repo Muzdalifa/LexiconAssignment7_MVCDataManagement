@@ -22,9 +22,8 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         private readonly ILanguageRepo _languageRepo;
         private readonly IPeopleRepo _peopleRepo;
 
-
-
-        public ReactFrontend(PeopleDbContext db, IPeopleRepo peopleRepo,ICityRepo cityRepo, ICountryRepo countryRepo,ILanguageRepo languageRepo, IPeopleService peopleService)
+        public ReactFrontend(PeopleDbContext db, IPeopleRepo peopleRepo,ICityRepo cityRepo,
+            ICountryRepo countryRepo,ILanguageRepo languageRepo, IPeopleService peopleService)
         {
             _peopleService = peopleService;
             _peopleRepo = peopleRepo;
@@ -37,7 +36,12 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = new { cities = _cityRepo.Read(), countries = _countryRepo.Read(), languages = _languageRepo.Read(), people = _peopleRepo.Read() };
+            var result = new { 
+                cities = _cityRepo.Read(),
+                countries = _countryRepo.Read(),
+                languages = _languageRepo.Read(),
+                people = _peopleRepo.Read()
+            };
             return Json(result);
         }
 
@@ -61,7 +65,14 @@ namespace LexiconAssignment7_MVCDataManagement.Controllers
             for (int i = 0; i < person.Languages.Length; i++)
             {
                 Language lg = _languageRepo.Read(person.Languages[i]);
-                personToEdit.PersonLanguages.Add(new PersonLanguage { PersonId = id, Person = personToEdit, LanguageId = lg.LanguageId, Language = lg });
+                personToEdit.PersonLanguages.Add( 
+                    new PersonLanguage { 
+                        PersonId = id,
+                        Person = personToEdit,
+                        LanguageId = lg.LanguageId,
+                        Language = lg 
+                    }
+                 );
             }
 
             if (ModelState.IsValid)
